@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.Naganath Timber - Since 1990 | Clay Tile & Wood Crafts</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Merriweather', serif; /* A more rustic, elegant font */
+    line-height: 1.6;
+    color: #5a3e36; /* Warm clay brown */
+    background-color: #f4ede1; /* Light earthy tone */
+    overflow-x: hidden;
+}
+
+/* Navigation styles */
+.navbar {
+    background: #8b5a2b; /* Wood brown */
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 102; /* Increased index to keep navbar on top */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    color: #f4ede1;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    padding: 0.5rem 0;
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #f4ede1;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Second Navbar with Scrolling Text */
+.top-navbar {
+    background: #a16125; /* Darker wood brown */
+    color: #f4ede1;
+    padding: 0.5rem 2rem; /* Adjusted padding for a slimmer look */
+    position: fixed;
+    width: 100%;
+    top: 94px; /* Ensures it is directly below the main navbar */
+    left: 0;
+    z-index: 101; /* Keeps it below the main navbar */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 40px; /* Set a fixed height for better alignment */
+}
+
+.top-navbar .marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 15s linear infinite;
+    padding-left: 100%; /* Starts text off-screen */
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.top-navbar a {
+    color: #f4ede1;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+}
+
+.top-navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(85, 54, 38, 0.8), rgba(85, 54, 38, 0.8)), 
+                url('/api/placeholder/1920/1080');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f4ede1;
+    text-align: center;
+    padding: 6rem 2rem;
+    font-family: 'Playfair Display', serif;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.4);
+}
+.hero div {
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+    letter-spacing: 2px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero h1:hover {
+    transform: scale(1.05);
+}
+
+.hero h2 {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 600;
+    opacity: 0.9;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    opacity: 0.85;
+    animation: fadeIn 1.8s ease-in-out;
+}
+
+
+/* Products section */
+.products {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: #dfc6ae;
+}
+
+.section-title {
+    color: #2c3e50;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #2c3e50;
+    transition: width 0.3s ease;
+}
+
+.section-title:hover::after {
+    width: 150px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-item {
+    background: #f8f4ef;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-item h3 {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.product-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7s;
+    font-weight: bold;
+}
+
+
+/* Slider styles */
+.slider img {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    width: 100%;
+    height: auto;
+}
+
+.slider {
+    position: relative;
+    width: 200px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    overflow: hidden;
+}
+
+.slider img.active {
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            transform: rotate(90deg);
+        }
+
+        .about {
+    padding: 6rem 2rem;
+    background: #e7d4c0; /* Soft warm clay tone */
+    text-align: center;
+}
+.about .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.about-text p {
+    font-size: 1.3rem;
+    color: #5a3e36;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Calculator Styles */
+        .contact .calculator-container {
+    position: absolute;
+    top: 9rem;  /* Align to top */
+    right: 1rem; /* Align to right */
+    max-width: 300px; /* Set a fixed width */
+    text-align: left;
+}
+
+#calculator {
+    position: absolute;
+    top: 43rem; /* Adjust for proper spacing */
+    right: 2rem; /* Move to the right */
+    max-width: 300px;
+    
+}
+#calculatorForm {
+    display: none;
+}
+
+        .calc-input, .calc-select {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .calc-button {
+            background: #8b5a2b;
+            color: #f4ede1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        .calc-button:hover {
+            background: #a16125;
+        }
+
+        .calc-result {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #5a3e36;
+        }
+
+        .about {
+            padding: 4rem 2rem;
+            background: #e7d4c0;
+        }
+
+        .contact {
+    position: relative;
+    text-align: center; /* Centers the text */
+    padding-top: 2rem;
+}
+
+.contact-info {
+    font-size: 1.2rem;
+    color: #5a3e36;
+    line-height: 2;
+}
+
+.contact-info a {
+    color: #251b1b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+
+    .contact-info i {
+        margin-right: 8px;
+        color: #2c3e50;
+    }
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-text, .about-image {
+        text-align: center;
+    }
+}
+/* Footer */
+.footer {
+    background-color: #8b5a2b;
+    color: #f4ede1;
+    padding: 3rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #f4ede1;
+    padding: 0.5rem;
+}
+
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navbar {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #8b5a2b;
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Adjust top navbar for mobile */
+    .top-navbar {
+        top: 73px; /* Adjust based on main navbar height */
+        padding: 0.5rem;
+    }
+
+    .marquee {
+        animation: marquee 20s linear infinite; /* Slower on mobile */
+    }
+
+    /* Hero section mobile adjustments */
+    .hero {
+        padding: 4rem 1rem;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .hero h2 {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+    }
+
+    @media (max-width: 768px) {
+    .navbar {
+        padding: 0.18rem 1rem; /* Reduce padding */
+    }
+
+    .top-navbar {
+        top: 62px; /* Adjusted to be right below the navbar */
+        height: 35px; /* Reduce height if needed */
+        padding: 0.5rem 2rem; /* Ensure it fits well */
+    }
+
+    .nav-links {
+        top: 100%;
+        padding: 0.5rem 0; /* Reduce padding for smaller screens */
+    }
+}
+
+    @media (max-width: 768px) {
+    .products {
+        padding: 4rem 1rem;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+        gap: 0.5rem; /* Reduced gap for tighter layout */
+        padding: 0 0.5rem;
+    }
+
+    .product-item {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-item h3 {
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+    }
+
+    .product-item p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    /* Adjust slider/image size for mobile grid */
+    .slider {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1; /* Maintain square aspect ratio */
+    }
+
+    .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns even on very small screens */
+        gap: 0.3rem; /* Even tighter gap for very small screens */
+    }
+
+    .product-item {
+        padding: 0.5rem;
+    }
+
+    .product-item h3 {
+        font-size: 0.8rem;
+    }
+
+    .product-item p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Adjust modal for the new grid layout */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        height: auto;
+        max-height: 80vh;
+    }
+
+    .close {
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+    }
+}
+    /* Modal adjustments for mobile */
+    .modal-content {
+        width: 95%;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 35px;
+    }
+
+    /* About section mobile adjustments */
+    .about {
+        padding: 4rem 1rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .about-text p {
+        font-size: 1.1rem;
+        text-align: left;
+    }
+
+    /* Contact section mobile adjustments */
+    .contact {
+        padding: 3rem 1rem;
+    }
+
+    .contact-info {
+        font-size: 1rem;
+    }
+
+    .contact-info p {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) {
+    .nav-links a:active {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .product-item:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Add prefixes for better browser support */
+@-webkit-keyframes marqueeAnim {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+
+@-moz-keyframes marqueeAnim {
+    0% { -moz-transform: translateX(0%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+
+@keyframes marqueeAnim {
+    0% { 
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+    }
+    100% { 
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+    }
+}
+
+.marquee-content a {
+    color: #f4ede1;
+    text-decoration: none;
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+}
+
+.marquee-content a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-navbar {
+        top: 73px;
+        height: 35px;
+        padding: 0.25rem 0;
+    }
+
+    .marquee-content {
+        animation-duration: 30s; /* Slower on mobile */
+    }
+
+    .marquee-content a {
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Pause animation on hover */
+.marquee-content:hover {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+}
+   
+   </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">S.Naganath Timber - Since 1990</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <nav class="top-navbar">
+        <div class="marquee">
+            📞 <a href="tel:+919443465513">+91 94434 65513</a> |
+            📞 <a href="tel:+919944028425">+91 99440 28425</a> |
+            💬 <a href="https://wa.me/919443465513" target="_blank">WhatsApp</a> |
+            📧 <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a> |
+            📌 <a href="https://maps.app.goo.gl/HZCZoRAwRqTony3f9" target="_blank">5/258 Bagavath Singh Road,Madurai-Rameswaram Road Paramakudi _623707 ,Ramanathapuram District ,Tamil Nadu</a>
+        </div>
+    </nav>
+
+    
+
+    <section id="home" class="hero">
+        <div>
+            <h1>S.நாகநாத் டிம்பர்</h1>
+            <h2>மரம்,ஓடு,சவுக்கு,வியாபாரம்</h2>
+            <p>Exceptional Quality, Timeless Beauty</p>
+            <p><strong>Serving Quality Since 1990</strong></p>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+    <h2 class="section-title">Our Products</h2>
+    <div class="product-grid">
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img class="slide active" src="image/Lakshmi front.jpg" alt="Lakshmi Tile Work Kerala">
+        <img class="slide" src="image/Lakshmi back.jpg" alt="Lakshmi Tile Work Kerala - Second Image">
+    </div>
+    <h3>Lakshmi Tile Work - Kerala<p>(இரட்டை யானை)</p></h3>
+    <p>Premium handcrafted clay tiles from Kerala, known for durability and elegance.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/bt front.jpg" alt="Bangalore Tiles Factory Polish Clay Tile">
+        <img src="image/bt back.jpg" alt="Bangalore Tiles Factory Polish Clay Tile 2">
+    </div>
+    <h3>Bangalore Tiles Factory Polish Clay Tile</h3>
+    <p>Premium polish tiles from Bangalore Tiles Factory , known for their glossy finish and durability.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Tbt front.jpg" alt="Terra Bricks & Tiles">
+        <img src="image/Tbt back.jpg" alt="Terra Bricks & Tiles 2">
+    </div>
+    <h3>Terra Bricks & Tiles Polish (TBT)</h3>
+    <p>Premium polish for enhancing the shine and longevity of bricks and tiles.</p>
+</div>
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Sastha front.jpg" alt="Sree Sastha Tiles Mallur">
+        <img src="image/Sastha back.jpg" alt="Sree Sastha Tiles Mallur 2">
+    </div>
+    <h3>Sree Sastha Polish Clay Tiles </h3>
+    <p>High-quality polish to maintain the shine and durability of your tiles.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Swathi krishna front.jpg" alt="Swathi Krishna Type B">
+        <img src="image/Swathi krishna back.jpg" alt="Swathi Krishna Type B Second Quality">
+    </div>
+    <h3>Swathi Krishna clay tile <p>(இரட்டை யானை)</p>(Second Quality)</h3>
+    <p>Reliable and budget-friendly Swathi Krishna, second quality, suitable for various construction applications.</p>
+</div>
+
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Abr front.jpg" alt="APR Clay Tile Nagercoil">
+        <img src="image/Abr back.jpg" alt="APR Clay Tile Nagercoil 2">
+    </div>
+    <h3>APR Clay Tile</h3>
+    <p>Premium clay tiles from Nagercoil, known for their strength and aesthetic appeal.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Lime_powder.jpg" alt="Lime Powder">
+        <img src="image/Lime_powder_2.jpg" alt="Lime Powder Packaging">
+    </div>
+    <h3>நகரகுடி சுண்ணாம்பு(orginal)</h3>
+    <p>High-quality lime powder, widely used for construction, whitewashing, and industrial applications. Available in various packaging options.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Dr fixit group.jpg" alt="Dr. Fixit Oil 1 Liter">
+        <img src="image/Dr fixit 1 ltr.jpg" alt="Dr. Fixit Oil 5 Liter">
+        <img src="image/Dr fixit 5 ltr.jpg" alt="Dr. Fixit Oil 5 Liter">
+    </div>
+    <h3>Dr. Fixit Oil</h3>
+    <p>High-quality Dr. Fixit oil for waterproofing and construction applications. Available in 1-liter and 5-liter packs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Pr front.jpg" alt="PR White Cooling Tile">
+        <img src="image/Pr whitetile logo.jpg" alt="PR White Cooling Tile 2">
+        <img src="image/Pr line.jpg" alt="PR White Cooling Tile 3">
+        <img src="image/Pr back.jpg" alt="PR White Cooling Tile 4">
+    </div>
+    <h3>PR White Cooling Tile</h3>
+    <p>Energy-efficient white cooling tiles designed to reduce heat and maintain comfort.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Abr white front.jpg" alt="APR Cool White Tile">
+        <img src="image/Apr white tile logo.jpg" alt="APR Cool White Tile 2">
+        <img src="image/Abr white back.jpg" alt="APR Cool White Tile 3">
+    </div>
+    <h3>APR White Cooling Tile</h3>
+    <p>High-quality cool white tiles designed to keep your spaces fresh and stylish.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Triple adr.jpg" alt="Trible ADR Classic">
+        <img src="image/Triple adr.jpg" alt="Trible ADR Classic">
+    </div>
+    <h3>Trible ADR Classic</h3>
+    <p>High-quality Trible ADR Classic tiles, designed for strength and durability.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Master bamboo.jpg" alt="Master Bamboo">
+        <img src="image/Master bamboo.jpg" alt="Master Bamboo">
+    </div>
+    <h3>Master Bamboo</h3>
+    <p>Eco-friendly and stylish Master Bamboo tiles, offering a natural aesthetic.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Portiques.jpg" alt="Portiques">
+        <img src="image/Portiques.jpg" alt="Portiques">
+    </div>
+    <h3>Portiques</h3>
+    <p>Elegant and durable Portiques tiles, perfect for modern and traditional designs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Vietnam.jpg" alt="Amper Jally Polish Tile">
+        <img src="image/Vietnam.jpg" alt="Amper Jally Polish Tile">
+    </div>
+    <h3>Amper Jally Polish</h3>
+    <p>Premium imported Amper Jally tiles from Vietnam, featuring high-quality polish and superior durability.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Five hole jally.jpg" alt="Five Hole Jally Tile">
+        <img src="image/Five hole full.jpg" alt="Five Hole Jally Tile 2">
+    </div>
+    <h3>Five Hole Jally Tile</h3>
+    <p>Traditional Kerala-style ventilation jally with five holes, offering both aesthetics and airflow.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Opal jally.jpg" alt="Opal Jally Tile">
+        <img src="image/Opal full.jpg" alt="Opal Jally Tile 2">
+    </div>
+    <h3>Opal Jally Tile</h3>
+    <p>Elegant and durable Opal Jally tiles, perfect for ventilation and aesthetic appeal in traditional and modern spaces.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Flower jally.jpg" alt="Flower Jally Tile">
+        <img src="image/Flower full.jpg" alt="Flower Jally Tile 2">
+    </div>
+    <h3>Flower Jally Tile</h3>
+    <p>Beautiful and durable Flower Jally tiles, adding elegance and ventilation to both traditional and modern architectural designs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Petaljally.jpg" alt="Petal Jally Tile">
+        <img src="image/Petal full.jpg" alt="Petal Jally Tile 2">
+    </div>
+    <h3>Petal Jally Tile</h3>
+    <p>Stylish and sturdy Petal Jally tiles, designed to enhance ventilation and aesthetics in both traditional and contemporary spaces.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Ripper1.jpg" alt="Ripar Wood">
+        <img src="image/Ripper 2.jpg" alt="Ripar Wood Sizes">
+        <img src="image/Ripper3.jpg" alt="Ripar Wood Sizes">
+    </div>
+    <h3>ரிப்பர்</h3>
+    <p>High-quality ripar wood available in various sizes: 3, 4, 5, 6, 7, 8, and 9, suitable for construction and furniture making.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Visaka cementsheet.jpg" alt="Visaka Cement Sheet">
+        <img src="image/Visaka logo.jpg" alt="Visaka Cement Sheet 2">
+    </div>
+    <h3>Visaka Cement Sheet</h3>
+    <p>Durable and high-quality Visaka cement sheets, available in sizes 6mm, 8mm, and 10mm for various construction needs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Tin_sheet.jpg" alt="Tin Sheet">
+        <img src="image/Tin_sheet_2.jpg" alt="Tin Sheet Design">
+    </div>
+    <h3>தகரம்</h3>
+    <p>Durable and weather-resistant tin sheets, available in sizes: 6 feet, 8 feet, and 10 feet. Ideal for roofing and fencing.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Kondi front.jpg" alt="Hook for Sheet">
+        <img src="image/Kondi 1.jpg" alt="Hook for Sheet Design">
+        <img src="image/Kondi 2.jpg" alt="Hook for Sheet Design">
+    </div>
+    <h3>கொக்கி(Hook)</h3>
+    <p>Durable and rust-resistant hooks for securing sheets, ideal for roofing and construction applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Vasar group.jpg" alt="Vasar Cement Sheet">
+        <img src="image/Vasar front.jpg" alt="Vasar Cement Sheet 2">
+    </div>
+    <h3>வாசர்</h3>
+    <p>Durable and high-quality Vasar cement sheets, available in sizes 6mm, 8mm, and 10mm for various construction needs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/God_image_tile.jpg" alt="God Image Tile">
+        <img src="image/God_image_tile_2.jpg" alt="God Image Tile Design">
+    </div>
+    <h3>God Image Tile</h3>
+    <p>Beautifully designed god image tiles, perfect for temples, pooja rooms, and decorative spaces. Available in various sizes and designs.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Glass tile front.jpg" alt="Glass Clay Tile">
+        <img src="image/Glass tile back.jpg" alt="Glass Clay Tile Design">
+    </div>
+    <h3>கண்ணாடி ஓடு</h3>
+    <p>Elegant and durable glass clay tiles for roofing, allowing natural light while maintaining strength and weather resistance.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Ridge mukatu clay tile.jpg" alt="Ridge Clay Tile">
+        <img src="image/Ride top view.jpg" alt="Ridge Clay Tile Design">
+    </div>
+    <h3>முகட்டு ஓடு</h3>
+    <p>Durable and weather-resistant ridge clay tiles, designed for roofing applications to enhance protection and aesthetics.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Roof tile.jpg" alt="Roof Clay Tile">
+        <img src="image/Roof tile 1.jpg" alt="Roof Clay Tile Design">
+    </div>
+    <h3>கூரை ஓடு</h3>
+    <p>High-quality roof clay tiles, offering durability, weather resistance, and a traditional aesthetic for roofing applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Smoke clay tile.jpg" alt="Smoke Clay Tile">
+        <img src="image/Smokeclaytiletop.jpg" alt="Smoke Clay Tile Design">
+    </div>
+    <h3>புகை ஓடு</h3>
+    <p>Premium quality smoke clay tiles, perfect for roofing, offering durability and a traditional aesthetic.</p>
+</div>
+
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Group.coir.jpg" alt="Rope">
+        <img src="image/5 coir.jpg" alt="Rope Product">
+        <img src="image/10 coir.jpg" alt="Rope Product">
+        <img src="image/Coir bundle side.jpg" alt="Rope Product">
+        <img src="image/Coir bundle top.jpg" alt="Rope Product">
+    </div>
+    <h3>கயிறு</h3>
+    <p>Strong and durable rope suitable for multiple applications, including construction, packaging, and household use.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Manikocham group.jpg" alt="Rope">
+        <img src="image/Manikocham small.jpg" alt="Rope Product">
+        <img src="image/Manikocham big.jpg" alt="Rope Product">
+    </div>
+    <h3>மணிக்கொச்சம்</h3>
+    <p>Strong and durable rope suitable for multiple applications, including construction, packaging, and household use.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Palai_palm_leaf.jpg" alt="Palai Palm Tree Leaf">
+        <img src="image/Palai_palm_leaf_2.jpg" alt="Palai Leaf for Roofing">
+    </div>
+    <h3>பாலை</h3>
+    <p>Natural and eco-friendly palm tree leaves (பாலை) used for traditional roofing and various sustainable applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Kiduku_product.jpg" alt="Kiduku Product">
+        <img src="image/Kiduku_logo.jpg" alt="Kiduku Brand">
+    </div>
+    <h3>கிடுகு </h3>
+    <p>Skilled and experienced workers make the product, known for their expertise in roofing applications.</p>
+</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Kiduku_product.jpg" alt="thati Product">
+        <img src="image/Kiduku_logo.jpg" alt="thati">
+    </div>
+    <h3>தட்டி</h3>
+    <p>Skilled and experienced workers make the product, known for their expertise in roofing applications.</p>
+</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Whip_wood.jpg" alt="Whip Wood">
+        <img src="image/Whip_wood_2.jpg" alt="Whip Wood Design">
+    </div>
+    <h3>சவுக்கு மரம்</h3>
+    <p>Strong and durable whip wood (சவுக்கு மரம்) available in multiple sizes: 8 feet, 10 feet, 12 feet, 15 feet, and 20 feet. ideal for construction applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Bamboo_wood.jpg" alt="Bamboo Wood">
+        <img src="image/Bamboo_wood_2.jpg" alt="Bamboo Wood Design">
+    </div>
+    <h3>மூங்கில் மரம்</h3>
+    <p>Eco-friendly and durable bamboo wood, available in multiple sizes:10 feet. Ideal for construction and decorative applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Bamboo_tree.jpg" alt="Bamboo Tree">
+        <img src="image/Bamboo_tree_2.jpg" alt="Bamboo Tree Varieties">
+    </div>
+    <h3>பட்டியல்</h3>
+    <p>Explore our catalog of high-quality bamboo trees, types for construction, decoration, and eco-friendly applications.</p>
+</div>
+
+<div class="product-item">
+    <div class="slider" onclick="openModal(this)">
+        <img src="image/Cement_pillar.jpg" alt="Cement Pillar">
+        <img src="image/Cement_pillar_2.jpg" alt="Cement Pillar Design">
+    </div>
+    <h3>சிமெண்ட் தூண்</h3>
+    <p>Strong and durable cement pillars, ideal for construction and fencing. Available in sizes: 6 feet, 8 feet, and 10 feet.</p>
+</div>
+
+</div>
+</section>
+ <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">×</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mobile Navigation
+    const navbar = document.querySelector(".navbar");
+    const navLinks = document.querySelector(".nav-links");
+
+    const hamburger = document.createElement("div");
+    hamburger.classList.add("hamburger");
+    hamburger.innerHTML = "☰";
+    navbar.prepend(hamburger);
+
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+        hamburger.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navbar.contains(event.target) && navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            hamburger.innerHTML = "☰";
+        }
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            hamburger.innerHTML = "☰";
+        });
+    });
+
+    // Image Slider
+    document.querySelectorAll(".slider").forEach(slider => {
+        let images = slider.querySelectorAll("img");
+        let index = 0;
+
+        if (images.length > 0) {
+            images[0].classList.add("active"); // Ensure first image is visible
+        }
+
+        if (images.length > 1) {
+            setTimeout(() => {
+                setInterval(() => {
+                    images[index].classList.remove("active");
+                    index = (index + 1) % images.length;
+                    images[index].classList.add("active");
+                }, 2600);
+            }, 100); // Small delay for initial image visibility
+        }
+
+        let touchStartX = 0, touchEndX = 0;
+
+        slider.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
+        slider.addEventListener("touchend", e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (Math.abs(touchEndX - touchStartX) > threshold) {
+                images[index].classList.remove("active");
+                index = touchEndX < touchStartX ? (index + 1) % images.length : (index - 1 + images.length) % images.length;
+                images[index].classList.add("active");
+            }
+        }
+    });
+
+    // Modal Image Viewer
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    let modalImages = [], currentIndex = 0;
+
+    window.openModal = function (element) {
+        modalImages = Array.from(element.getElementsByTagName("img"));
+        currentIndex = 0;
+        updateModalImage();
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+    };
+
+    window.closeModal = function () {
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+    };
+
+    function updateModalImage() {
+        modalImg.src = modalImages[currentIndex].src;
+    }
+
+    modalImg.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % modalImages.length;
+        updateModalImage();
+    });
+
+    let modalTouchStartX = 0, modalTouchEndX = 0;
+
+    modalImg.addEventListener("touchstart", e => modalTouchStartX = e.changedTouches[0].screenX);
+    modalImg.addEventListener("touchend", e => {
+        modalTouchEndX = e.changedTouches[0].screenX;
+        handleModalSwipe();
+    });
+
+    function handleModalSwipe() {
+        const threshold = 50;
+        if (Math.abs(modalTouchEndX - modalTouchStartX) > threshold) {
+            currentIndex = modalTouchEndX < modalTouchStartX ? (currentIndex + 1) % modalImages.length : (currentIndex - 1 + modalImages.length) % modalImages.length;
+            updateModalImage();
+        }
+    }
+
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+    });
+});
+
+// calculator
+function unlockCalculator() {
+    let enteredCode = document.getElementById('accessCode').value.trim().toLowerCase();
+
+    // Obfuscated Secret Code (split & joined dynamically)
+    let part1 = "nag";
+    let part2 = "anath";
+    let part3 = "timber";
+    let correctCode = part1 + part2 + part3;
+
+    let calculatorForm = document.getElementById('calculatorForm');
+    let contact = document.getElementById('contact');
+
+    if (enteredCode === correctCode) {
+        calculatorForm.style.display = 'block';
+        calculatorForm.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        alert('Incorrect code! Please contact Naganath Timber for access.');
+        
+        // Ensure the contact section exists before scrolling
+        if (contact) {
+            contact.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.error("Contact section not found. Make sure you have an element with id='contact' in your HTML.");
+        }
+    }
+}
+
+// Function to calculate the required tiles based on area and tile type
+function calculateTiles() {
+    let area = parseFloat(document.getElementById('area').value);
+    let tileType = document.getElementById('tileType').value;
+    let result = 0;
+
+    // Validate input
+    if (isNaN(area) || area <= 0) {
+        document.getElementById('result').innerText = "Please enter a valid area.";
+        return;
+    }
+
+    // Calculation based on tile type
+    const tileMultipliers = {
+        clay: 1.7,
+        white: 1.4,
+        design: 4
+    };
+
+    result = area * (tileMultipliers[tileType] || 0);
+
+    // Display result
+    document.getElementById('result').innerText = `You need ${result.toFixed(2)} tiles.`;
+}
+// Marquee Animation Control
+document.addEventListener('DOMContentLoaded', function () {
+    const marquee = document.querySelector('.marquee');
+
+    if (marquee) {
+        marquee.addEventListener('mouseenter', function () {
+            this.style.animationPlayState = 'paused';
+        });
+
+        marquee.addEventListener('mouseleave', function () {
+            this.style.animationPlayState = 'running';
+        });
+    }
+});
+</script>
+
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Established in 1958, our shop has a long-standing reputation for quality and craftsmanship. 
+                    Originally founded under a different name, we rebranded in 1990 as S.Naganath Timber to reflect our growth and expanded expertise in the timber and clay tile industry.
+                </p>
+                <p>
+                    S.Naganath Timber has been a trusted name in the timber and clay tile industry.
+                    We specialize in high-quality clay tiles and wood. With decades of experience,
+                    we pride ourselves on delivering excellence in  durability and aesthetics.
+                </p>
+                <p>
+                    Our mission is to provide customers with eco-friendly, long-lasting, and aesthetically pleasing solutions
+                    for homes and businesses. We source the finest materials and employ skilled artisans to ensure every product meets
+                    our rigorous quality standards.
+                </p>
+                <p>
+                    Whether you're looking for traditional Kerala clay tiles, polished clay tiles, or bespoke wood,
+                    we have a wide range of products to suit your needs. Our commitment to customer satisfaction and quality
+                    has made us a preferred choice for architects, builders, and homeowners alike.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="image/phone look.jpg" alt="About S.Naganath Timber">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-info">
+        <p><strong>For Any Enquiries, Contact Us:</strong></p>
+        <p>
+            📞 <a href="tel:+919443465513">+91 94434 65513</a> <br>
+            📞 <a href="tel:+919944028425"> +91 99440 28425</a> <br>
+            💬 <a href="https://wa.me/919443465513" target="_blank">WhatsApp: +91 94434 65513</a> <br>
+            📧 <a href="mailto:info@naganathtimber@gmail.com">naganathtimber@gmail.com</a> <br>
+            📌<a href="https://maps.app.goo.gl/HZCZoRAwRqTony3f9" target="_blank">5/258 Bagavath Singh Road,Madurai-Rameswaram Road <strong>Paramakudi-623707 
+            </strong><br>Ramanathapuram District<br>Touch Find us on Google Maps</a> <br>
+            💳<a><strong>We Accept:</strong> Google Pay, PhonePe, Paytm</a>
+        </p>
+    </div>
+    <div class="calculator-container">
+        <div class="calculator" id="calculatorForm">
+            <h3>Tile Calculator</h3>
+            <input type="number" id="area" placeholder="Enter area (sq. ft.)" class="calc-input">
+            <select id="tileType" class="calc-select">
+                <option value="clay">தட்டோடு</option>
+                <option value="white">வெள்ளை ஓடு</option>
+                <option value="design">டிசைன் ஓடு</option>
+            </select>
+            <button onclick="calculateTiles()" class="calc-button">Calculate</button>
+            <div id="result" class="calc-result"></div>
+        </div> 
+    </div>
+</section>
+
+<div style="display: flex; justify-content: center; padding-bottom: 2rem; background-color: #f4ede1;">
+    <div id="calculator" class="calculator-container" style="position: relative; top: 0; right: 0; text-align: center;">
+        <h3>Staff Tool</h3>
+        <div class="calculator-form">
+            <input type="text" id="accessCode" placeholder="code is shop name (without space)" class="calc-input">
+            <button onclick="unlockCalculator()" class="calc-button">Submit</button>
+        </div>
+    </div>
+</div>
+
+    <footer class="footer">
+        <div class="footer-content">
+       <p>© 2025 S.Naganath Timber | Since 1990 | All Rights Reserved</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
