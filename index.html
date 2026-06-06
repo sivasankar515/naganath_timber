@@ -1,0 +1,3676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>S.Naganath Timber – Since 1958 | Premium Roofing & Building Materials, Paramakudi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+:root {
+  --clay:    #c1440e;
+  --clay2:   #e05012;
+  --wood:    #7c4a1e;
+  --wood2:   #5a3512;
+  --sand:    #f2e4cc;
+  --dark:    #120b04;
+  --dark2:   #1a0f07;
+  --smoke:   #1e1208;
+  --smoke2:  #281a0e;
+  --gold:    #d4a44c;
+  --gold2:   #f0c060;
+  --cream:   #faf5ee;
+  --green:   #3a5c3a;
+  --shadow:  rgba(0,0,0,0.7);
+  --border-gold: rgba(212,164,76,0.22);
+  --border-clay: rgba(193,68,14,0.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.32;
+}
+
+/* ════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 900;
+  background: rgba(18,11,4,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 62px;
+  transition: box-shadow 0.3s;
+}
+.navbar.scrolled {
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  cursor: pointer; user-select: none;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.logo:hover { opacity: 0.82; }
+
+/* SVG Roof Icon */
+.logo-roof-svg {
+  width: 44px; height: 40px;
+  flex-shrink: 0;
+  color: var(--gold);
+  transition: color 0.3s;
+  filter: drop-shadow(0 0 8px rgba(212,164,76,0.25));
+}
+.logo:hover .logo-roof-svg { color: var(--gold2); }
+
+.logo-text { display: flex; flex-direction: column; line-height: 1.25; }
+.logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem; font-weight: 700;
+  letter-spacing: 1.5px; color: var(--gold);
+  text-transform: uppercase;
+}
+.logo-sub {
+  font-size: 0.6rem; letter-spacing: 1.5px;
+  color: var(--sand); opacity: 0.65;
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex; gap: 2.2rem; align-items: center;
+}
+.nav-links a {
+  color: var(--sand); text-decoration: none;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: color 0.3s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: var(--gold); transition: width 0.3s ease; border-radius: 2px;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+/* admin dot removed – logo 5-click is the only trigger */
+
+/* Hamburger */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; background: none; border: none;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--gold); transition: all 0.3s; border-radius: 2px;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; top: 62px; left: 0; width: 100%; z-index: 890;
+  background: rgba(14,9,3,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 1rem 1.5rem 1.5rem;
+  flex-direction: column; gap: 0;
+  transform: translateY(-8px); opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.mobile-menu.open {
+  display: flex; transform: translateY(0); opacity: 1;
+}
+.mobile-menu a {
+  color: var(--sand); text-decoration: none;
+  font-size: 1rem; font-weight: 500; letter-spacing: 1.5px;
+  padding: 1rem 0; border-bottom: 1px solid rgba(212,164,76,0.08);
+  display: flex; align-items: center; gap: 0.6rem;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--gold); padding-left: 0.4rem; }
+
+/* ════════════════════════════════════════
+   TICKER
+════════════════════════════════════════ */
+.ticker {
+  position: fixed; top: 62px; width: 100%; z-index: 889;
+  background: linear-gradient(90deg, #3a0c03, var(--clay), #7c1e0a, var(--clay), #3a0c03);
+  background-size: 300% 100%;
+  animation: ticker-bg 10s ease infinite;
+  overflow: hidden; height: 32px;
+  border-bottom: 1px solid rgba(193,68,14,0.5);
+  display: flex; align-items: center;
+  box-shadow: 0 2px 14px rgba(193,68,14,0.25);
+}
+@keyframes ticker-bg {
+  0%,100% { background-position:0% 50%; }
+  50%      { background-position:100% 50%; }
+}
+.ticker-label {
+  flex-shrink: 0; background: rgba(0,0,0,0.3);
+  color: var(--gold); font-size: 0.62rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 0 1rem; height: 100%; display: flex; align-items: center;
+  border-right: 1px solid rgba(212,164,76,0.3);
+  white-space: nowrap; font-weight: 600;
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: ticker-scroll 35s linear infinite;
+  white-space: nowrap;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  color: #fff; font-size: 0.76rem; padding: 0 1.6rem;
+  display: flex; align-items: center; gap: 0.4rem;
+  letter-spacing: 0.4px; font-weight: 400;
+}
+.ticker-item a { color: #fff; text-decoration: none; font-weight: 600; }
+.ticker-item a:hover { text-decoration: underline; color: var(--gold2); }
+.ticker-sep { color: rgba(255,255,255,0.45); margin: 0 0.25rem; font-size: 0.55rem; }
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 2rem 6rem;
+  background:
+    radial-gradient(ellipse at 25% 20%, rgba(193,68,14,0.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(124,74,30,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 50%, #291506 0%, var(--dark) 100%);
+  position: relative; overflow: hidden; text-align: center;
+}
+
+/* Subtle tile-pattern underlay */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 38px,
+      rgba(212,164,76,0.022) 38px, rgba(212,164,76,0.022) 39px),
+    repeating-linear-gradient(-45deg, transparent, transparent 38px,
+      rgba(212,164,76,0.018) 38px, rgba(212,164,76,0.018) 39px);
+}
+
+/* Glowing orb */
+.hero::after {
+  content: '';
+  position: absolute; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212,164,76,0.07) 0%, transparent 70%);
+  border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+  animation: orb-pulse 6s ease-in-out infinite;
+}
+@keyframes orb-pulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+  50%      { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+}
+
+.particle {
+  position: absolute; border-radius: 3px;
+  background: var(--clay); pointer-events: none;
+  animation: particle-float linear infinite;
+}
+@keyframes particle-float {
+  0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.12; }
+  95%  { opacity: 0.12; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem; letter-spacing: 5px; color: var(--clay);
+  text-transform: uppercase; margin-bottom: 1.6rem;
+  animation: fadeUp 0.9s ease both;
+  font-weight: 500;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7.5vw, 5.8rem);
+  font-weight: 900; line-height: 1.08;
+  color: var(--cream); letter-spacing: 3px;
+  text-shadow: 0 0 80px rgba(212,164,76,0.25), 0 6px 24px rgba(0,0,0,0.6);
+  animation: fadeUp 1s 0.15s ease both;
+}
+.hero-title-en {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3.2vw, 2.5rem);
+  font-weight: 500; color: var(--gold);
+  letter-spacing: 4px; margin-top: 0.5rem; font-style: italic;
+  animation: fadeUp 1s 0.28s ease both;
+}
+
+.hero-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 1.6rem auto; width: fit-content;
+  animation: fadeUp 1s 0.42s ease both;
+}
+.hero-divider::before, .hero-divider::after {
+  content: ''; display: block; width: 90px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.hero-divider span { color: var(--gold); font-size: 0.85rem; }
+
+.hero-tagline {
+  font-size: clamp(1rem, 2vw, 1.2rem); color: var(--sand);
+  max-width: 580px; margin: 0 auto; line-height: 1.9;
+  opacity: 0.82; animation: fadeUp 1s 0.56s ease both;
+  font-weight: 300;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 2.4rem; animation: fadeUp 1s 0.7s ease both;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.95rem 2.4rem; border-radius: 3px;
+  font-size: 0.83rem; letter-spacing: 1.8px; font-weight: 600;
+  cursor: pointer; transition: all 0.3s; text-decoration: none;
+  position: relative; overflow: hidden; text-transform: uppercase;
+}
+.btn::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.09);
+  transform: translateX(-110%) skewX(-15deg);
+  transition: transform 0.4s;
+}
+.btn:hover::after { transform: translateX(110%) skewX(-15deg); }
+.btn-primary {
+  background: var(--clay); color: var(--cream); border: none;
+  box-shadow: 0 4px 26px rgba(193,68,14,0.4);
+}
+.btn-primary:hover { background: var(--clay2); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(193,68,14,0.55); }
+.btn-outline {
+  background: transparent; color: var(--gold);
+  border: 1.5px solid rgba(212,164,76,0.55);
+}
+.btn-outline:hover { background: rgba(212,164,76,0.1); border-color: var(--gold); transform: translateY(-2px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   STATS BAR
+════════════════════════════════════════ */
+.stats-bar {
+  background: linear-gradient(90deg, var(--wood2), var(--smoke2) 40%, var(--smoke2) 60%, var(--wood2));
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 2rem 2rem;
+  display: flex; justify-content: center; flex-wrap: wrap;
+}
+.stat-item {
+  text-align: center; padding: 0 3.5rem;
+  border-right: 1px solid rgba(212,164,76,0.12);
+  flex: 0 0 auto;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 800;
+  color: var(--gold); display: block; line-height: 1;
+  letter-spacing: -1px;
+}
+.stat-label {
+  font-size: 0.72rem; letter-spacing: 2px; color: var(--sand);
+  opacity: 0.65; text-transform: uppercase;
+  margin-top: 0.4rem; display: block; font-weight: 500;
+}
+
+/* ════════════════════════════════════════
+   SECTION SHARED
+════════════════════════════════════════ */
+.section-header {
+  text-align: center; padding: 5rem 2rem 2.5rem; position: relative;
+}
+.section-label {
+  font-size: 0.68rem; letter-spacing: 5px; color: var(--clay);
+  text-transform: uppercase; margin-bottom: 0.9rem; font-weight: 600;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem); font-weight: 800;
+  color: var(--gold); letter-spacing: 2px;
+  position: relative; display: inline-block;
+}
+.section-title::after {
+  content: '';
+  position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--clay), transparent);
+  border-radius: 2px;
+}
+
+/* ════════════════════════════════════════
+   CATEGORY TABS
+════════════════════════════════════════ */
+.cat-section { background: var(--smoke); padding-bottom: 0; }
+.cat-tabs {
+  display: flex; gap: 0.6rem;
+  justify-content: center; padding: 2rem 2rem 2.5rem;
+  max-width: 1100px; margin: 0 auto;
+  flex-wrap: wrap;
+}
+.cat-tab {
+  padding: 0.6rem 1.6rem; border: 1.5px solid rgba(124,74,30,0.45);
+  background: transparent; color: var(--sand); border-radius: 2px;
+  cursor: pointer; font-size: 0.76rem; letter-spacing: 1.5px;
+  transition: all 0.25s; white-space: nowrap; font-weight: 500;
+}
+.cat-tab:hover { border-color: var(--clay); color: var(--gold); }
+.cat-tab.active {
+  background: var(--clay); color: var(--cream);
+  border-color: var(--clay); box-shadow: 0 0 22px rgba(193,68,14,0.4);
+  font-weight: 600;
+}
+
+/* ════════════════════════════════════════
+   PRODUCT GRID + CARDS
+════════════════════════════════════════ */
+.products-section {
+  background: var(--smoke);
+  padding: 0 2rem 7rem;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: 1.8rem; max-width: 1380px; margin: 0 auto;
+  perspective: 1200px;
+}
+
+.product-card {
+  background: linear-gradient(160deg, #2c1b0d 0%, #180e04 100%);
+  border: 1px solid rgba(212,164,76,0.14);
+  border-radius: 8px; overflow: hidden; cursor: pointer;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: perspective(1200px) rotateX(25deg) rotateY(-8deg) translateY(70px) scale(0.88);
+  transition: opacity 0.65s ease,
+              transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94),
+              box-shadow 0.3s ease, border-color 0.3s ease;
+  will-change: transform, opacity;
+  position: relative;
+}
+.product-card.in-view {
+  opacity: 1;
+  transform: perspective(1200px) rotateX(0) rotateY(0) translateY(0) scale(1);
+}
+.product-card.hidden { display: none; }
+.product-card:hover {
+  border-color: rgba(212,164,76,0.38);
+  box-shadow: 0 22px 65px rgba(0,0,0,0.75), 0 0 32px rgba(193,68,14,0.12),
+              inset 0 1px 0 rgba(212,164,76,0.08);
+}
+
+/* Delete button (admin only) */
+.card-del-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 10;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(193,68,14,0.75); border: 1px solid rgba(193,68,14,0.5);
+  color: #fff; font-size: 0.75rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.card-del-btn:hover { background: var(--clay2); }
+.admin-mode .card-del-btn { display: flex; }
+
+/* Card glare */
+.card-glare {
+  position: absolute; inset: 0; pointer-events: none; z-index: 5;
+  border-radius: 8px; opacity: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,240,200,0.1), transparent 70%);
+  transition: opacity 0.3s;
+}
+.product-card:hover .card-glare { opacity: 1; }
+
+/* Card image area */
+.card-img-wrap {
+  position: relative; height: 220px; overflow: hidden;
+  background: var(--dark2);
+}
+.card-img-wrap img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0; transition: opacity 0.55s ease;
+}
+.card-img-wrap img.active { opacity: 1; }
+
+.card-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 4;
+  background: rgba(193,68,14,0.88); color: var(--cream);
+  font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0.28rem 0.65rem; border-radius: 2px; font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+/* Indicator dots */
+.card-dots {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 5px; z-index: 4;
+}
+.card-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.4); transition: background 0.3s;
+}
+.card-dot.active { background: var(--gold2); }
+
+/* Card body */
+.card-body { padding: 1.3rem 1.2rem 1.5rem; }
+.card-cat {
+  font-size: 0.62rem; letter-spacing: 2px; color: var(--clay2);
+  text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 600;
+}
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.02rem; font-weight: 700;
+  color: var(--gold); line-height: 1.35; margin-bottom: 0.6rem;
+}
+.card-desc {
+  font-size: 0.84rem; color: var(--sand); opacity: 0.72;
+  line-height: 1.7; margin-bottom: 0.9rem; font-weight: 300;
+}
+.card-specs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 0.8rem;
+  border-top: 1px solid rgba(212,164,76,0.1); padding-top: 0.8rem;
+}
+.spec-item {
+  font-size: 0.75rem; color: var(--sand); opacity: 0.65; line-height: 1.4;
+}
+.spec-item strong {
+  display: block; color: var(--clay2); font-size: 0.6rem;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1px;
+  font-weight: 600; opacity: 1;
+}
+
+/* ════════════════════════════════════════
+   ABOUT SECTION — COMPLETE REDESIGN
+════════════════════════════════════════ */
+.about-section {
+  background:
+    radial-gradient(ellipse at 10% 50%, rgba(124,74,30,0.14) 0%, transparent 60%),
+    var(--dark2);
+  padding: 5rem 2rem 6rem;
+  position: relative; overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 48px,
+      rgba(212,164,76,0.018) 48px, rgba(212,164,76,0.018) 49px);
+}
+
+.about-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 5rem; align-items: center; position: relative; z-index: 1;
+}
+
+/* ── Founder Portrait Column ── */
+.founder-column {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+
+.founder-frame {
+  position: relative; width: 280px; height: 340px;
+  border-radius: 4px; overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(212,164,76,0.2),
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 40px rgba(212,164,76,0.08);
+}
+
+/* Decorative corner brackets */
+.founder-frame::before, .founder-frame::after {
+  content: '';
+  position: absolute; width: 30px; height: 30px;
+  border: 2px solid rgba(212,164,76,0.6); z-index: 10; pointer-events: none;
+}
+.founder-frame::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.founder-frame::after  { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+.founder-inner-corner {
+  position: absolute; z-index: 10; pointer-events: none;
+}
+.founder-inner-corner.tr {
+  top: 8px; right: 8px;
+  width: 30px; height: 30px;
+  border-top: 2px solid rgba(212,164,76,0.6);
+  border-right: 2px solid rgba(212,164,76,0.6);
+}
+.founder-inner-corner.bl {
+  bottom: 8px; left: 8px;
+  width: 30px; height: 30px;
+  border-bottom: 2px solid rgba(212,164,76,0.6);
+  border-left: 2px solid rgba(212,164,76,0.6);
+}
+
+.founder-photo {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s ease;
+}
+.founder-frame:hover .founder-photo { transform: scale(1.04); }
+
+/* Fallback silhouette */
+.founder-silhouette {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #2c1b0d 0%, #180d03 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+}
+.founder-silhouette svg {
+  width: 100px; height: 110px; opacity: 0.35;
+}
+.founder-silhouette span {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); opacity: 0.4; font-size: 0.75rem;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+
+/* Gold banner at bottom of frame */
+.founder-frame-banner {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 8;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+  padding: 1.5rem 1rem 0.9rem;
+  text-align: center;
+}
+
+.founder-name-in-frame {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold2); font-size: 1rem; font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.founder-role-in-frame {
+  color: var(--sand); font-size: 0.68rem; letter-spacing: 2px;
+  text-transform: uppercase; opacity: 0.75; margin-top: 2px;
+  font-weight: 400;
+}
+
+/* Est. badge below frame */
+.founder-est {
+  margin-top: 1.4rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+}
+.founder-est-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(212,164,76,0.06);
+  border: 1px solid rgba(212,164,76,0.2);
+  border-radius: 2px; padding: 0.4rem 1.2rem;
+}
+.founder-est-tag span {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 0.75rem; letter-spacing: 3px;
+  font-weight: 700; text-transform: uppercase;
+}
+
+/* ── About Text Column ── */
+.about-text-col {}
+
+.about-eyebrow {
+  font-size: 0.68rem; letter-spacing: 5px; color: var(--clay);
+  text-transform: uppercase; margin-bottom: 1rem; font-weight: 600;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.about-eyebrow::before {
+  content: ''; display: block; width: 36px; height: 1.5px;
+  background: var(--clay);
+}
+
+.about-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+  color: var(--cream); line-height: 1.2; margin-bottom: 1.5rem;
+}
+.about-heading em {
+  font-style: italic; color: var(--gold);
+}
+
+.about-divider {
+  width: 50px; height: 2px; margin-bottom: 1.8rem;
+  background: linear-gradient(90deg, var(--clay), transparent);
+  border-radius: 2px;
+}
+
+.about-body p {
+  font-size: 1.02rem; color: var(--sand); opacity: 0.78;
+  line-height: 1.95; margin-bottom: 1.2rem; font-weight: 300;
+}
+.about-body strong { color: var(--cream); font-weight: 600; opacity: 1; }
+
+/* Features grid */
+.about-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin-top: 2rem;
+}
+.about-feat {
+  background: rgba(212,164,76,0.04);
+  border: 1px solid rgba(212,164,76,0.1);
+  border-left: 3px solid var(--clay);
+  border-radius: 0 4px 4px 0;
+  padding: 0.85rem 1rem;
+  transition: background 0.3s, border-left-color 0.3s;
+}
+.about-feat:hover {
+  background: rgba(212,164,76,0.08);
+  border-left-color: var(--gold);
+}
+.about-feat-title {
+  font-size: 0.72rem; letter-spacing: 1.5px; color: var(--gold);
+  text-transform: uppercase; font-weight: 600; margin-bottom: 0.25rem;
+}
+.about-feat-val {
+  font-size: 0.9rem; color: var(--sand); opacity: 0.75;
+}
+
+/* Address card */
+.about-addr {
+  margin-top: 2rem;
+  background: rgba(212,164,76,0.04);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px; padding: 1.2rem 1.4rem;
+  display: flex; align-items: flex-start; gap: 0.8rem;
+}
+.about-addr-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.about-addr-text {
+  font-size: 0.9rem; color: var(--sand); opacity: 0.75; line-height: 1.7;
+}
+
+/* ════════════════════════════════════════
+   CONTACT SECTION
+════════════════════════════════════════ */
+.contact-section {
+  background: var(--smoke);
+  padding: 0 2rem 6rem;
+  border-top: 1px solid rgba(212,164,76,0.08);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem; max-width: 1100px; margin: 3rem auto 0;
+}
+.contact-card {
+  background: rgba(212,164,76,0.03);
+  border: 1px solid rgba(212,164,76,0.12);
+  border-radius: 8px; padding: 2rem 1.5rem;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  text-align: center; position: relative; overflow: hidden;
+}
+.contact-card::before {
+  content: '';
+  position: absolute; top: 0; left: 20%; right: 20%; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(212,164,76,0.3), transparent);
+  transition: opacity 0.3s; opacity: 0;
+}
+.contact-card:hover {
+  border-color: var(--border-clay);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+}
+.contact-card:hover::before { opacity: 1; }
+.contact-icon { font-size: 1.9rem; margin-bottom: 0.85rem; display: block; }
+.contact-label {
+  font-size: 0.62rem; letter-spacing: 2px; color: var(--clay);
+  text-transform: uppercase; font-weight: 600; margin-bottom: 0.6rem;
+  display: block;
+}
+.contact-card a {
+  color: var(--gold); text-decoration: none;
+  font-size: 0.95rem; font-weight: 500;
+  display: block; line-height: 1.7;
+  transition: color 0.2s;
+}
+.contact-card a:hover { color: var(--gold2); text-decoration: underline; }
+.contact-card span {
+  color: var(--sand); font-size: 0.92rem;
+  opacity: 0.72; line-height: 1.7; display: block;
+}
+
+/* WhatsApp CTA strip */
+.whatsapp-cta {
+  max-width: 700px; margin: 3rem auto 0;
+  background: rgba(37,211,102,0.07);
+  border: 1.5px solid rgba(37,211,102,0.25);
+  border-radius: 8px; padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.whatsapp-cta-text { color: var(--sand); font-size: 0.95rem; opacity: 0.85; }
+.whatsapp-cta-text strong { color: var(--cream); }
+.whatsapp-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: #25d366; color: #fff; border: none;
+  padding: 0.82rem 2rem; border-radius: 4px;
+  font-size: 0.85rem; letter-spacing: 1px; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.whatsapp-btn:hover { background: #1db954; transform: translateY(-2px); }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background: var(--dark2);
+  border-top: 1px solid rgba(212,164,76,0.12);
+  padding: 3rem 2rem 2rem; text-align: center;
+}
+.footer-inner {
+  max-width: 900px; margin: 0 auto;
+}
+.footer-logo {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.8rem; margin-bottom: 1.2rem;
+}
+.footer-logo-svg { width: 36px; height: 34px; color: var(--gold); }
+.footer-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--gold); letter-spacing: 2.5px;
+}
+.footer-divider {
+  width: 60px; height: 1px; margin: 0 auto 1.2rem;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.footer-info {
+  color: var(--sand); font-size: 0.88rem; opacity: 0.5; line-height: 2;
+}
+.footer-info a { color: var(--sand); text-decoration: none; }
+.footer-info a:hover { color: var(--gold); }
+.footer-admin-trigger {
+  margin-top: 1.5rem; color: transparent; font-size: 0.5rem;
+  cursor: default; user-select: none;
+}
+
+/* ════════════════════════════════════════
+   PRODUCT DETAIL MODAL
+════════════════════════════════════════ */
+.pd-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 9800;
+  background: rgba(4,2,0,0.85);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  align-items: center; justify-content: center;
+  padding: 1.2rem;
+}
+.pd-backdrop.show { display: flex; }
+
+.pd-shell {
+  position: relative; width: 100%; max-width: 900px; max-height: 88vh;
+  display: grid; grid-template-columns: 46% 54%;
+  background: linear-gradient(160deg, rgba(46,24,10,0.99) 0%, rgba(14,8,3,0.99) 100%);
+  border: 1px solid rgba(212,164,76,0.2);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(212,164,76,0.06), 0 36px 90px rgba(0,0,0,0.88),
+              0 8px 28px rgba(193,68,14,0.1);
+  animation: pd-in 0.42s cubic-bezier(0.34,1.46,0.64,1) both;
+}
+@keyframes pd-in {
+  from { opacity:0; transform: scale(0.9) translateY(24px); }
+  to   { opacity:1; transform: scale(1) translateY(0); }
+}
+.pd-shell::before {
+  content:'';
+  position: absolute; top:0; left: 8%; right: 8%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), rgba(193,68,14,0.8), var(--gold), transparent);
+  border-radius: 0 0 4px 4px; z-index: 2;
+}
+
+.pd-close-btn {
+  position: absolute; top: 14px; right: 14px; z-index: 20;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(12,6,2,0.92);
+  border: 1px solid rgba(212,164,76,0.28);
+  color: var(--gold); font-size: 1.25rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.pd-close-btn:hover { background: var(--clay); border-color: var(--clay2); transform: rotate(90deg) scale(1.1); }
+
+.pd-img-col {
+  background: linear-gradient(145deg, #311608 0%, #190c03 100%);
+  display: flex; flex-direction: column; overflow: hidden; position: relative;
+}
+.pd-img-stage {
+  flex: 1; position: relative; min-height: 0; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.pd-img-stage::before {
+  content:''; position: absolute; inset:0;
+  background: linear-gradient(90deg, transparent 25%, rgba(212,164,76,0.03) 50%, transparent 75%);
+  background-size: 200% 100%; animation: pd-shimmer 2s infinite; pointer-events: none;
+}
+@keyframes pd-shimmer { from { background-position:200% center; } to { background-position:-200% center; } }
+
+.pd-main-img { width:100%; height:100%; object-fit:contain; padding:1.6rem; transition: opacity 0.28s, transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94); display:block; }
+.pd-main-img.fading { opacity:0; transform:scale(0.96); }
+
+.pd-arrow {
+  position: absolute; top:50%; transform: translateY(-50%);
+  width:34px; height:34px; border-radius:50%;
+  background: rgba(14,7,2,0.88); border:1px solid rgba(212,164,76,0.38);
+  color:var(--gold); font-size:1.2rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s; z-index:5; box-shadow:0 2px 12px rgba(0,0,0,0.5);
+}
+.pd-arrow:hover { background:var(--clay); border-color:var(--clay2); transform:translateY(-50%) scale(1.1); }
+.pd-arrow-prev { left:10px; } .pd-arrow-next { right:10px; }
+.pd-arrow[hidden] { display:none!important; }
+
+.pd-counter-pill {
+  position: absolute; bottom:10px; left:50%; transform:translateX(-50%);
+  background: rgba(0,0,0,0.68); color:var(--sand);
+  font-size:0.62rem; letter-spacing:1.5px;
+  padding:0.22rem 0.7rem; border-radius:20px;
+  border:1px solid rgba(212,164,76,0.15); white-space:nowrap;
+}
+
+.pd-thumbs-strip {
+  display:flex; gap:7px; padding:0.75rem 0.85rem;
+  background:rgba(0,0,0,0.35); border-top:1px solid rgba(212,164,76,0.1);
+  overflow-x:auto; min-height:68px; scrollbar-width:thin; scrollbar-color:rgba(212,164,76,0.25) transparent;
+}
+.pd-thumbs-strip:empty { display:none; }
+.pd-thumb {
+  width:54px; height:54px; border-radius:6px; object-fit:cover;
+  cursor:pointer; flex-shrink:0; border:2px solid transparent; opacity:0.5; transition:all 0.22s;
+}
+.pd-thumb.active { border-color:var(--gold); opacity:1; box-shadow:0 0 12px rgba(212,164,76,0.3); }
+.pd-thumb:hover:not(.active) { opacity:0.82; border-color:rgba(212,164,76,0.4); }
+
+.pd-info-col {
+  display:flex; flex-direction:column; gap:0;
+  overflow-y:auto; padding:2rem 1.8rem 1.6rem;
+  border-left:1px solid rgba(212,164,76,0.1);
+}
+.pd-info-col::-webkit-scrollbar { width:3px; }
+.pd-info-col::-webkit-scrollbar-thumb { background:rgba(212,164,76,0.18); border-radius:2px; }
+
+.pd-category-tag {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  background:rgba(193,68,14,0.13); border:1px solid rgba(193,68,14,0.36);
+  color:var(--clay2); font-size:0.58rem; letter-spacing:2.5px;
+  text-transform:uppercase; padding:0.25rem 0.75rem; border-radius:3px;
+  width:fit-content; margin-bottom:0.9rem;
+  animation:pd-tag-in 0.5s 0.15s ease both;
+}
+@keyframes pd-tag-in { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:translateX(0)} }
+.pd-category-tag::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--clay2); flex-shrink:0; }
+
+.pd-product-name {
+  font-family:'Playfair Display',serif; font-size:clamp(1rem,2.2vw,1.35rem);
+  color:var(--gold); line-height:1.35; margin-bottom:1rem;
+  animation:pd-title-in 0.55s 0.2s ease both;
+}
+@keyframes pd-title-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.pd-gold-rule {
+  height:1px; margin-bottom:1rem;
+  background:linear-gradient(90deg, rgba(193,68,14,0.7), rgba(212,164,76,0.4), transparent);
+  animation:pd-rule-in 0.7s 0.3s ease both;
+}
+@keyframes pd-rule-in { from{transform:scaleX(0);transform-origin:left} to{transform:scaleX(1);transform-origin:left} }
+
+.pd-description { font-size:0.9rem; color:var(--sand); line-height:1.8; opacity:0.77; margin-bottom:1.2rem; animation:pd-desc-in 0.55s 0.3s ease both; font-weight:300; }
+@keyframes pd-desc-in { from{opacity:0;transform:translateY(8px)} to{opacity:0.77;transform:translateY(0)} }
+
+.pd-specs-box {
+  background:rgba(212,164,76,0.04); border:1px solid rgba(212,164,76,0.12);
+  border-radius:8px; padding:1rem 1.1rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:0.75rem 1rem;
+  margin-bottom:1.3rem; animation:pd-specs-in 0.55s 0.38s ease both;
+}
+@keyframes pd-specs-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.pd-spec-row { display:flex; flex-direction:column; gap:3px; }
+.pd-spec-lbl { font-size:0.58rem; letter-spacing:1.8px; text-transform:uppercase; color:var(--clay2); font-weight:600; }
+.pd-spec-val { font-size:0.86rem; color:var(--cream); letter-spacing:0.2px; line-height:1.3; }
+.pd-specs-box:empty { display:none; }
+
+.pd-cta-row {
+  display:flex; gap:0.7rem; margin-top:auto; padding-top:0.4rem;
+  animation:pd-cta-in 0.55s 0.46s ease both;
+}
+@keyframes pd-cta-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.pd-cta-btn {
+  flex:1; display:inline-flex; align-items:center; justify-content:center; gap:0.45rem;
+  padding:0.82rem 1rem; border-radius:6px; font-size:0.7rem; letter-spacing:1.5px;
+  text-transform:uppercase; text-decoration:none; border:none; cursor:pointer;
+  transition:all 0.25s; position:relative; overflow:hidden; white-space:nowrap;
+}
+.pd-cta-btn::after {
+  content:''; position:absolute; inset:0; background:rgba(255,255,255,0.08);
+  transform:translateX(-110%) skewX(-15deg); transition:transform 0.4s;
+}
+.pd-cta-btn:hover::after { transform:translateX(110%) skewX(-15deg); }
+.pd-cta-call { background:var(--clay); color:var(--cream); box-shadow:0 4px 18px rgba(193,68,14,0.35); }
+.pd-cta-call:hover { background:var(--clay2); transform:translateY(-2px); }
+.pd-cta-wa { background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.38)!important; color:#4ade80; }
+.pd-cta-wa:hover { background:rgba(34,197,94,0.22); border-color:rgba(34,197,94,0.65)!important; transform:translateY(-2px); }
+
+/* Modal – mobile bottom sheet */
+@media (max-width:620px) {
+  .pd-backdrop { padding:0; align-items:flex-end; }
+  .pd-shell {
+    grid-template-columns:1fr; grid-template-rows:auto 1fr;
+    max-height:93dvh; border-radius:20px 20px 0 0; width:100%;
+    animation:pd-slide-up 0.38s cubic-bezier(0.32,1.2,0.64,1) both;
+  }
+  @keyframes pd-slide-up { from{transform:translateY(100%);opacity:.6} to{transform:translateY(0);opacity:1} }
+  .pd-shell::after { content:''; position:absolute; top:9px; left:50%; transform:translateX(-50%); width:38px; height:4px; border-radius:3px; background:rgba(212,164,76,0.3); z-index:3; }
+  .pd-img-col { height:48vw; min-height:180px; max-height:260px; border-radius:20px 20px 0 0; }
+  .pd-info-col { border-left:none; border-top:1px solid rgba(212,164,76,0.12); padding:1.3rem 1.2rem 2.5rem; }
+}
+
+/* ════════════════════════════════════════
+   ADMIN LOGIN
+════════════════════════════════════════ */
+.admin-login-bg {
+  display:none; position:fixed; inset:0; z-index:9900;
+  background:rgba(0,0,0,0.96); align-items:center; justify-content:center;
+  backdrop-filter:blur(8px);
+}
+.admin-login-bg.show { display:flex; }
+.admin-login-box {
+  background:linear-gradient(160deg, #1e1108, #0e0804);
+  border:1px solid rgba(212,164,76,0.25);
+  border-radius:10px; padding:2.8rem; width:380px; max-width:95vw;
+  position:relative; text-align:center;
+  box-shadow:0 40px 100px rgba(0,0,0,0.8);
+}
+.admin-login-box::before { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent); }
+.admin-lock-icon { font-size:2.5rem; margin-bottom:1rem; }
+.admin-login-box h2 { font-family:'Playfair Display',serif; color:var(--gold); font-size:1.2rem; letter-spacing:2px; margin-bottom:0.4rem; }
+.admin-login-box p { color:var(--sand); font-size:0.85rem; opacity:0.6; margin-bottom:1.8rem; }
+.admin-pw-input { width:100%; padding:0.85rem 1rem; background:rgba(10,6,2,0.8); border:1px solid rgba(124,74,30,0.5); color:var(--cream); border-radius:4px; font-size:1rem; margin-bottom:0.8rem; transition:border-color 0.3s; text-align:center; letter-spacing:3px; }
+.admin-pw-input:focus { outline:none; border-color:var(--gold); }
+.admin-login-btn { width:100%; padding:0.9rem; background:var(--clay); border:none; color:var(--cream); font-size:0.88rem; letter-spacing:2px; cursor:pointer; border-radius:4px; transition:background 0.3s; margin-bottom:0.8rem; font-weight:600; text-transform:uppercase; }
+.admin-login-btn:hover { background:var(--clay2); }
+.admin-login-btn:disabled { opacity:0.5; cursor:not-allowed; }
+.admin-login-cancel { background:none; border:none; color:var(--sand); opacity:0.5; font-size:0.8rem; cursor:pointer; }
+.admin-login-cancel:hover { opacity:0.9; }
+.admin-login-error { background:rgba(193,68,14,0.15); border:1px solid rgba(193,68,14,0.4); border-radius:4px; padding:0.6rem; color:#ff8866; font-size:0.82rem; margin-bottom:0.8rem; display:none; }
+
+/* ════════════════════════════════════════
+   ADMIN DASHBOARD
+════════════════════════════════════════ */
+.admin-panel { display:none; position:fixed; inset:0; z-index:9850; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); }
+.admin-panel.show { display:flex; justify-content:flex-end; }
+.admin-panel-inner { width:480px; max-width:100vw; height:100vh; background:linear-gradient(180deg, #140c04 0%, #0e0804 100%); border-left:1px solid rgba(212,164,76,0.2); display:flex; flex-direction:column; overflow:hidden; box-shadow:-20px 0 80px rgba(0,0,0,0.7); }
+.admin-header { padding:1.4rem 1.6rem; border-bottom:1px solid rgba(212,164,76,0.15); display:flex; align-items:center; justify-content:space-between; background:rgba(10,5,2,0.8); }
+.admin-header-left { display:flex; align-items:center; gap:0.8rem; }
+.admin-shield { font-size:1.3rem; }
+.admin-header h2 { font-family:'Playfair Display',serif; color:var(--gold); font-size:0.95rem; letter-spacing:2px; }
+.admin-header p { font-size:0.72rem; color:var(--sand); opacity:0.5; }
+.admin-logout-btn { background:rgba(193,68,14,0.2); border:1px solid rgba(193,68,14,0.4); color:var(--clay2); font-size:0.72rem; letter-spacing:1px; padding:0.4rem 1rem; border-radius:3px; cursor:pointer; transition:background 0.2s; }
+.admin-logout-btn:hover { background:rgba(193,68,14,0.35); }
+.admin-tabs { display:flex; border-bottom:1px solid rgba(212,164,76,0.12); background:rgba(8,4,1,0.5); }
+.admin-tab { flex:1; padding:0.85rem; background:none; border:none; border-bottom:2px solid transparent; color:var(--sand); font-size:0.72rem; letter-spacing:1.5px; cursor:pointer; transition:all 0.2s; opacity:0.6; font-weight:500; }
+.admin-tab.active { color:var(--gold); border-bottom-color:var(--gold); opacity:1; }
+.admin-tab:hover { opacity:0.9; }
+.admin-content { flex:1; overflow-y:auto; padding:1.5rem; }
+.admin-content::-webkit-scrollbar { width:4px; }
+.admin-content::-webkit-scrollbar-thumb { background:rgba(212,164,76,0.2); border-radius:2px; }
+.admin-tab-pane { display:none; }
+.admin-tab-pane.active { display:block; }
+.admin-field { margin-bottom:1.1rem; }
+.admin-field label { display:block; font-size:0.68rem; letter-spacing:2px; color:var(--gold); margin-bottom:0.4rem; text-transform:uppercase; font-weight:600; }
+.admin-field input,.admin-field select,.admin-field textarea { width:100%; padding:0.7rem 0.9rem; background:rgba(10,5,2,0.8); border:1px solid rgba(124,74,30,0.4); color:var(--cream); border-radius:4px; font-size:0.9rem; font-family:'DM Sans',sans-serif; transition:border-color 0.3s; }
+.admin-field textarea { resize:vertical; min-height:70px; }
+.admin-field input:focus,.admin-field select:focus,.admin-field textarea:focus { outline:none; border-color:var(--gold); }
+.admin-field select option { background:#1a0f07; }
+.admin-field .field-hint { font-size:0.73rem; color:var(--sand); opacity:0.5; margin-top:0.3rem; }
+.admin-specs-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
+.admin-spec-pair { display:flex; gap:0.4rem; }
+.admin-spec-pair input { padding:0.55rem 0.7rem; font-size:0.82rem; }
+.admin-submit-btn { width:100%; padding:0.9rem; background:var(--clay); border:none; color:var(--cream); font-size:0.8rem; letter-spacing:2px; cursor:pointer; border-radius:4px; margin-top:0.5rem; transition:background 0.3s; font-weight:600; text-transform:uppercase; }
+.admin-submit-btn:hover { background:var(--clay2); }
+.admin-success { background:rgba(58,92,58,0.2); border:1px solid rgba(58,92,58,0.5); color:#88cc88; padding:0.7rem; border-radius:4px; font-size:0.82rem; text-align:center; margin-top:1rem; display:none; }
+.admin-product-list { display:flex; flex-direction:column; gap:0.7rem; }
+.admin-product-item { display:flex; align-items:center; gap:0.8rem; background:rgba(255,255,255,0.03); border:1px solid rgba(212,164,76,0.1); border-radius:4px; padding:0.7rem 0.9rem; transition:border-color 0.2s; }
+.admin-product-item:hover { border-color:rgba(212,164,76,0.25); }
+.admin-prod-thumb { width:44px; height:44px; border-radius:4px; object-fit:cover; background:var(--smoke2); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+.admin-prod-thumb img { width:100%; height:100%; object-fit:cover; border-radius:4px; }
+.admin-prod-info { flex:1; min-width:0; }
+.admin-prod-name { font-family:'Playfair Display',serif; font-size:0.78rem; color:var(--gold); }
+.admin-prod-cat { font-size:0.7rem; color:var(--sand); opacity:0.5; text-transform:uppercase; letter-spacing:1px; }
+.admin-prod-del { background:rgba(193,68,14,0.15); border:1px solid rgba(193,68,14,0.3); color:var(--clay); padding:0.3rem 0.7rem; border-radius:3px; font-size:0.7rem; cursor:pointer; transition:background 0.2s; white-space:nowrap; flex-shrink:0; }
+.admin-prod-del:hover { background:rgba(193,68,14,0.4); }
+.admin-prod-edit { background:rgba(212,164,76,0.12); border:1px solid rgba(212,164,76,0.3); color:var(--gold); padding:0.3rem 0.7rem; border-radius:3px; font-size:0.7rem; cursor:pointer; transition:background 0.2s; white-space:nowrap; flex-shrink:0; margin-right:0.3rem; }
+.admin-prod-edit:hover { background:rgba(212,164,76,0.25); }
+.admin-info-box { background:rgba(212,164,76,0.05); border:1px solid rgba(212,164,76,0.15); border-radius:6px; padding:1rem 1.2rem; margin-top:1.5rem; }
+.admin-info-box h4 { font-family:'Playfair Display',serif; color:var(--gold); font-size:0.78rem; letter-spacing:1px; margin-bottom:0.6rem; }
+.admin-info-box p { font-size:0.78rem; color:var(--sand); opacity:0.6; line-height:1.7; }
+.admin-info-box code { background:rgba(0,0,0,0.4); padding:0.1rem 0.4rem; border-radius:2px; font-size:0.75rem; color:var(--gold2); font-family:monospace; }
+
+/* ── Drag & Drop Upload Zone ── */
+.drop-zone {
+  border: 2px dashed rgba(212,164,76,0.35); border-radius:8px;
+  padding:1.5rem 1rem; text-align:center; cursor:pointer;
+  transition:all 0.25s; background:rgba(212,164,76,0.03);
+  position:relative;
+}
+.drop-zone:hover,.drop-zone.drag-over { border-color:var(--gold); background:rgba(212,164,76,0.08); }
+.drop-zone input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+.drop-zone-icon { font-size:1.8rem; margin-bottom:0.4rem; }
+.drop-zone-text { font-size:0.78rem; color:var(--sand); opacity:0.65; line-height:1.6; }
+.drop-zone-text strong { color:var(--gold); opacity:1; font-size:0.8rem; }
+.upload-previews { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.7rem; }
+.upload-preview-item {
+  position:relative; width:64px; height:64px; border-radius:6px; overflow:hidden;
+  border:1.5px solid rgba(212,164,76,0.3);
+}
+.upload-preview-item img { width:100%; height:100%; object-fit:cover; }
+.upload-preview-item .remove-img {
+  position:absolute; top:2px; right:2px; width:18px; height:18px;
+  background:rgba(193,68,14,0.9); color:#fff; border:none; border-radius:50%;
+  font-size:0.6rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-weight:700; line-height:1;
+}
+.upload-progress { font-size:0.75rem; color:var(--gold); margin-top:0.4rem; display:none; }
+.upload-progress.active { display:block; }
+
+/* ── Admin Login Email field ── */
+.admin-email-input {
+  width:100%; padding:0.85rem 1.1rem; margin-bottom:0.9rem;
+  background:rgba(8,4,1,0.9); border:1.5px solid rgba(124,74,30,0.5);
+  color:var(--cream); border-radius:6px; font-size:0.95rem;
+  font-family:'DM Sans',sans-serif; transition:border-color 0.3s; outline:none;
+}
+.admin-email-input:focus { border-color:var(--gold); }
+
+/* ── Supabase status badge ── */
+.sb-status {
+  font-size:0.62rem; letter-spacing:1px; padding:0.22rem 0.65rem; border-radius:20px;
+  border:1px solid; display:inline-flex; align-items:center; gap:0.35rem;
+  font-weight:600; text-transform:uppercase; margin-top:0.4rem;
+}
+.sb-status.connected { border-color:rgba(58,92,58,0.5); color:#88cc88; background:rgba(58,92,58,0.1); }
+.sb-status.disconnected { border-color:rgba(193,68,14,0.5); color:var(--clay2); background:rgba(193,68,14,0.1); }
+.sb-status::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+/* ════════════════════════════════════════
+   GOOGLE REVIEW FLOAT BUTTON
+════════════════════════════════════════ */
+.google-review-float {
+  position: fixed; bottom: 5.4rem; right: 2rem; z-index: 800;
+  display: flex; align-items: center; gap: 0.55rem;
+  background: #fff; border: none; border-radius: 24px;
+  padding: 0.6rem 1.1rem 0.6rem 0.8rem;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.28), 0 0 0 1px rgba(0,0,0,0.06);
+  cursor: pointer; text-decoration: none;
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, box-shadow 0.25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.google-review-float.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+.google-review-float:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.32); transform: translateY(-2px); }
+.google-review-float svg { width: 22px; height: 22px; flex-shrink: 0; }
+.google-review-float-text { display: flex; flex-direction: column; line-height: 1.2; }
+.google-review-float-text span:first-child {
+  font-size: 0.62rem; color: #555; font-weight: 500; letter-spacing: 0.2px;
+}
+.google-review-float-text span:last-child {
+  font-size: 0.74rem; color: #1a73e8; font-weight: 700; letter-spacing: 0.3px;
+}
+
+/* ════════════════════════════════════════
+   REVIEW POPUP
+════════════════════════════════════════ */
+.review-popup-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 9700;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+  align-items: flex-end; justify-content: center;
+  padding-bottom: 2rem;
+}
+.review-popup-backdrop.show { display: flex; animation: review-fade-in 0.3s ease; }
+@keyframes review-fade-in { from { opacity:0; } to { opacity:1; } }
+.review-popup {
+  width: 100%; max-width: 440px; margin: 0 1rem;
+  background: linear-gradient(160deg, #1e1208 0%, #0e0804 100%);
+  border: 1px solid rgba(212,164,76,0.2);
+  border-radius: 18px; padding: 1.6rem 1.6rem 1.4rem;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.85);
+  animation: review-popup-in 0.42s cubic-bezier(0.34,1.46,0.64,1) both;
+  position: relative;
+}
+@keyframes review-popup-in {
+  from { opacity:0; transform: translateY(60px) scale(0.92); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+.review-popup-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+.review-popup-brand { display: flex; align-items: center; gap: 0.55rem; }
+.review-popup-brand svg { width: 22px; height: 22px; }
+.review-popup-brand-text { font-size: 0.72rem; color: var(--sand); opacity: 0.6; letter-spacing: 0.5px; }
+.review-popup-close {
+  background: rgba(255,255,255,0.07); border: none; color: var(--sand);
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: background 0.2s; opacity: 0.7;
+}
+.review-popup-close:hover { background: rgba(255,255,255,0.14); opacity: 1; }
+.review-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,164,76,0.1);
+  border-radius: 12px; padding: 1.1rem 1.2rem;
+  min-height: 120px;
+}
+.review-card-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.7rem; }
+.review-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  font-family: 'Playfair Display', serif;
+}
+.review-meta { flex: 1; }
+.review-name { font-size: 0.88rem; font-weight: 600; color: var(--cream); }
+.review-date { font-size: 0.7rem; color: var(--sand); opacity: 0.5; margin-top: 1px; }
+.review-stars { color: #fbbc04; font-size: 0.88rem; letter-spacing: -1px; margin-bottom: 0.6rem; }
+.review-text { font-size: 0.86rem; color: var(--sand); opacity: 0.78; line-height: 1.7; font-weight: 300; }
+.review-popup-footer {
+  margin-top: 1.1rem; display: flex; align-items: center; justify-content: space-between;
+  gap: 0.8rem; flex-wrap: wrap;
+}
+.review-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: #1a73e8; color: #fff; border: none;
+  padding: 0.6rem 1.3rem; border-radius: 6px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
+  cursor: pointer; text-decoration: none; transition: background 0.2s;
+  white-space: nowrap;
+}
+.review-cta-btn:hover { background: #1558b0; }
+.review-nav-dots { display: flex; gap: 5px; align-items: center; }
+.review-nav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(212,164,76,0.25); transition: background 0.3s, width 0.3s;
+  cursor: pointer;
+}
+.review-nav-dot.active { background: var(--gold); width: 14px; border-radius: 3px; }
+
+/* ════════════════════════════════════════
+   GOOGLE REVIEW CTA (in contact section)
+════════════════════════════════════════ */
+.google-review-cta-box {
+  max-width: 700px; margin: 2rem auto 0;
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid rgba(66,133,244,0.25);
+  border-radius: 8px; padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.google-review-cta-left { display: flex; align-items: center; gap: 1rem; }
+.google-review-cta-left svg { width: 36px; height: 36px; flex-shrink: 0; }
+.google-review-cta-info strong { color: var(--cream); font-size: 0.95rem; display: block; margin-bottom: 0.2rem; }
+.google-review-cta-info span { color: var(--sand); font-size: 0.8rem; opacity: 0.65; }
+.google-review-cta-info .stars-row { color: #fbbc04; font-size: 0.82rem; margin-top: 2px; }
+.review-google-btn {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: #fff; color: #3c4043; border: none;
+  padding: 0.72rem 1.6rem; border-radius: 6px;
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25); transition: box-shadow 0.2s, transform 0.2s;
+}
+.review-google-btn:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.35); transform: translateY(-2px); }
+.review-google-btn svg { width: 18px; height: 18px; }
+
+/* ════════════════════════════════════════
+   ADMIN EDIT BUTTON
+════════════════════════════════════════ */
+.admin-prod-edit {
+  background: rgba(74,120,193,0.15); border: 1px solid rgba(74,120,193,0.3);
+  color: #6fa3ef; padding: 0.3rem 0.7rem; border-radius: 3px;
+  font-size: 0.7rem; cursor: pointer; transition: background 0.2s;
+  white-space: nowrap; flex-shrink: 0; margin-right: 0.3rem;
+}
+.admin-prod-edit:hover { background: rgba(74,120,193,0.3); }
+.admin-edit-mode-banner {
+  background: rgba(74,120,193,0.12); border: 1px solid rgba(74,120,193,0.3);
+  border-radius: 6px; padding: 0.7rem 1rem; margin-bottom: 1rem;
+  display: none; align-items: center; justify-content: space-between;
+  font-size: 0.78rem; color: #6fa3ef;
+}
+.admin-edit-mode-banner.show { display: flex; }
+.admin-edit-cancel-btn {
+  background: none; border: 1px solid rgba(74,120,193,0.4);
+  color: #6fa3ef; font-size: 0.7rem; cursor: pointer; border-radius: 3px;
+  padding: 0.25rem 0.6rem; transition: background 0.2s;
+}
+.admin-edit-cancel-btn:hover { background: rgba(74,120,193,0.15); }
+
+/* ════════════════════════════════════════
+   ENHANCED PRODUCT CARD ANIMATIONS
+════════════════════════════════════════ */
+.product-card {
+  transition: opacity 0.65s ease,
+              transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease !important;
+  will-change: transform, box-shadow;
+}
+.product-card:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(212,164,76,0.28),
+    0 0 30px rgba(212,164,76,0.1) !important;
+  border-color: rgba(212,164,76,0.32) !important;
+}
+.product-card::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 8px;
+  background: linear-gradient(135deg,
+    rgba(212,164,76,0.06) 0%,
+    transparent 50%,
+    rgba(193,68,14,0.04) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.product-card:hover::after { opacity: 1; }
+
+/* Card image zoom */
+.card-img-wrap img.active {
+  transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94) !important;
+}
+.product-card:hover .card-img-wrap img.active {
+  transform: scale(1.06) !important;
+}
+
+/* Shimmer sweep on card hover */
+@keyframes card-shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+.product-card .card-glare {
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: skewX(-20deg); pointer-events: none;
+  transition: none;
+}
+.product-card:hover .card-glare {
+  animation: card-shimmer 0.7s ease forwards;
+}
+
+/* Badge pulse */
+.card-badge {
+  animation: badge-glow 3s ease-in-out infinite !important;
+}
+@keyframes badge-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(193,68,14,0); }
+  50%      { box-shadow: 0 0 10px 2px rgba(193,68,14,0.4); }
+}
+
+/* Improved stat counter animation */
+@keyframes stat-pop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.06); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.stat-num.counted {
+  animation: stat-pop 0.6s cubic-bezier(0.34,1.46,0.64,1) both;
+}
+
+/* Hero title shimmer */
+@keyframes title-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.hero-title {
+  background: linear-gradient(90deg, var(--cream) 30%, var(--gold2) 50%, var(--cream) 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeUp 1s 0.15s ease both, title-shimmer 5s linear infinite !important;
+}
+
+/* Section title underline grow */
+.section-title::after {
+  transition: width 0.5s ease !important;
+}
+.section-title:hover::after {
+  width: 90% !important;
+}
+
+/* Smooth section reveals */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1),
+              transform 0.8s cubic-bezier(0.22,1,0.36,1) !important;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0) !important; }
+
+/* Contact card enhanced hover */
+.contact-card {
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.46,0.64,1),
+              box-shadow 0.3s !important;
+}
+.contact-card:hover {
+  transform: translateY(-7px) !important;
+  box-shadow: 0 20px 55px rgba(0,0,0,0.5), 0 0 20px rgba(193,68,14,0.1) !important;
+}
+
+/* Admin panel slide-in */
+@keyframes admin-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+.admin-panel-inner {
+  animation: none;
+}
+.admin-panel.show .admin-panel-inner {
+  animation: admin-slide-in 0.38s cubic-bezier(0.32,1.2,0.64,1) both !important;
+}
+
+/* Review popup enhanced */
+.review-popup {
+  animation: review-popup-in 0.48s cubic-bezier(0.34,1.46,0.64,1) both !important;
+}
+@keyframes review-popup-in {
+  from { opacity: 0; transform: translateY(80px) scale(0.88); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Review popup progress bar */
+.review-popup::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--clay), var(--gold));
+  border-radius: 0 0 18px 18px;
+  animation: review-progress 120s linear forwards;
+}
+@keyframes review-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* Navbar logo pulse on hover */
+.logo-roof-svg {
+  transition: color 0.3s, filter 0.3s, transform 0.4s cubic-bezier(0.34,1.46,0.64,1) !important;
+}
+.logo:hover .logo-roof-svg {
+  transform: scale(1.1) rotate(-4deg) !important;
+  filter: drop-shadow(0 0 14px rgba(212,164,76,0.5)) !important;
+}
+
+/* Button ripple effect */
+.btn {
+  position: relative; overflow: hidden;
+}
+.btn:active::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: inherit;
+  animation: btn-ripple 0.4s ease forwards;
+}
+@keyframes btn-ripple {
+  from { transform: scale(0); opacity: 1; }
+  to   { transform: scale(2); opacity: 0; }
+}
+
+/* WhatsApp btn pulse */
+.whatsapp-btn {
+  animation: wa-pulse 2.5s ease-in-out infinite !important;
+}
+@keyframes wa-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  50%      { box-shadow: 0 0 0 8px rgba(37,211,102,0.15); }
+}
+
+/* Ticker glow */
+.ticker {
+  box-shadow: 0 2px 20px rgba(193,68,14,0.35), inset 0 -1px 0 rgba(212,164,76,0.15) !important;
+}
+
+/* ════════════════════════════════════════
+   GITHUB SYNC STYLES
+════════════════════════════════════════ */
+.github-section {
+  background: rgba(36,41,47,0.4);
+  border: 1px solid rgba(88,166,255,0.18);
+  border-radius: 8px; padding: 1.2rem 1.3rem;
+  margin-top: 1.2rem;
+}
+.github-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem; color: #79c0ff; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.github-section-title::before {
+  content: ''; display: inline-block; width: 18px; height: 18px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2379c0ff' d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center/contain;
+  flex-shrink: 0;
+}
+.github-field { margin-bottom: 0.75rem; }
+.github-field label {
+  display: block; font-size: 0.64rem; letter-spacing: 1.8px;
+  color: #79c0ff; margin-bottom: 0.3rem; text-transform: uppercase;
+}
+.github-field input {
+  width: 100%; padding: 0.65rem 0.85rem;
+  background: rgba(13,17,23,0.7);
+  border: 1px solid rgba(88,166,255,0.25);
+  color: #e6edf3; border-radius: 4px;
+  font-size: 0.85rem; font-family: 'DM Sans',sans-serif;
+  transition: border-color 0.25s;
+}
+.github-field input:focus { outline: none; border-color: #58a6ff; }
+.github-field .field-hint {
+  font-size: 0.68rem; color: #8b949e; margin-top: 0.25rem;
+}
+.github-sync-btn {
+  width: 100%; padding: 0.82rem;
+  background: linear-gradient(135deg, #238636, #2ea043);
+  border: 1px solid #3fb950; color: #fff;
+  font-size: 0.78rem; letter-spacing: 1.5px;
+  cursor: pointer; border-radius: 4px;
+  transition: all 0.25s; font-weight: 600;
+  text-transform: uppercase; margin-top: 0.6rem;
+  box-shadow: 0 4px 16px rgba(46,160,67,0.3);
+}
+.github-sync-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2ea043, #3fb950);
+  box-shadow: 0 6px 22px rgba(46,160,67,0.45);
+  transform: translateY(-1px);
+}
+.github-sync-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.github-sync-status {
+  font-size: 0.77rem; text-align: center;
+  margin-top: 0.6rem; min-height: 1.2rem;
+  transition: color 0.3s;
+}
+.github-save-cfg-btn {
+  background: rgba(88,166,255,0.12);
+  border: 1px solid rgba(88,166,255,0.3);
+  color: #79c0ff; font-size: 0.7rem;
+  padding: 0.4rem 1rem; border-radius: 3px;
+  cursor: pointer; margin-top: 0.3rem;
+  transition: background 0.2s; letter-spacing: 1px;
+}
+.github-save-cfg-btn:hover { background: rgba(88,166,255,0.22); }
+.back-top {
+  position:fixed; bottom:2rem; right:2rem; z-index:800;
+  width:46px; height:46px; border-radius:4px;
+  background:var(--clay); border:none; color:var(--cream);
+  font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s, transform 0.3s;
+  box-shadow:0 4px 22px rgba(193,68,14,0.45);
+}
+.back-top.visible { opacity:1; pointer-events:all; }
+.back-top:hover { transform:translateY(-3px); background:var(--clay2); }
+
+/* ════════════════════════════════════════
+   REVEAL ANIMATION (generic sections)
+════════════════════════════════════════ */
+.reveal {
+  opacity:0; transform:translateY(30px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in-view { opacity:1; transform:translateY(0); }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — TABLET
+════════════════════════════════════════ */
+@media (max-width:1100px) {
+  .about-inner { grid-template-columns:1fr; gap:3rem; max-width:680px; }
+  .founder-column { flex-direction:row; gap:2rem; align-items:flex-start; }
+  .founder-frame { width:220px; height:270px; flex-shrink:0; }
+}
+
+@media (max-width:900px) {
+  .stat-item { padding:0 2rem; }
+  .about-features { grid-template-columns:1fr; }
+  .founder-column { flex-direction:column; align-items:center; }
+  .founder-frame { width:240px; height:290px; }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE
+════════════════════════════════════════ */
+@media (max-width:768px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .navbar { padding:0 1.2rem; }
+
+  .hero { padding:110px 1.2rem 5rem; }
+  .hero-title { font-size:clamp(2.4rem,8vw,3.5rem); letter-spacing:1px; }
+
+  .stats-bar { gap:0; padding:1.5rem 1rem; }
+  .stat-item { padding:0 1.2rem; }
+  .stat-num { font-size:1.9rem; }
+
+  /* Category tabs – horizontal scroll on mobile */
+  .cat-tabs {
+    flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start;
+    padding:1.5rem 1rem; gap:0.5rem;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+    scroll-padding:1rem;
+  }
+  .cat-tabs::-webkit-scrollbar { display:none; }
+  .cat-tab { flex-shrink:0; }
+
+  .products-grid {
+    grid-template-columns:repeat(2, 1fr);
+    gap:1rem;
+  }
+  .products-section { padding:0 0.8rem 5rem; }
+
+  .card-img-wrap { height:160px; }
+  .card-name { font-size:0.88rem; }
+  .card-desc { font-size:0.78rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .card-specs { grid-template-columns:1fr; gap:0.3rem; }
+  .card-body { padding:0.9rem 0.85rem 1rem; }
+
+  .about-section { padding:3.5rem 1.2rem 4rem; }
+  .about-inner { gap:2rem; }
+  .about-heading { font-size:1.7rem; }
+  .about-body p { font-size:0.95rem; }
+
+  .contact-section { padding:0 1rem 5rem; }
+  .contact-grid { grid-template-columns:repeat(2, 1fr); gap:0.9rem; }
+  .contact-card { padding:1.3rem 1rem; }
+  .contact-card a, .contact-card span { font-size:0.82rem; }
+
+  .whatsapp-cta { flex-direction:column; text-align:center; padding:1.2rem 1.4rem; }
+
+  footer { padding:2.5rem 1.2rem 1.5rem; }
+  .back-top { bottom:1.2rem; right:1.2rem; width:42px; height:42px; }
+}
+
+@media (max-width:480px) {
+  .hero-title { font-size:2.2rem; }
+  .hero-cta { flex-direction:column; align-items:center; }
+  .hero-cta .btn { width:100%; max-width:280px; justify-content:center; }
+  .stats-bar { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; padding:1.8rem 1rem; }
+  .stat-item { border-right:none; border-bottom:1px solid rgba(212,164,76,0.1); padding-bottom:0.8rem; }
+  .stat-item:nth-child(even) { border-bottom:1px solid rgba(212,164,76,0.1); }
+  .stat-item:nth-child(3),.stat-item:nth-child(4) { border-bottom:none; }
+  .products-grid { grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .contact-grid { grid-template-columns:1fr; }
+  .about-features { grid-template-columns:1fr 1fr; }
+  .admin-panel-inner { width:100vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar" id="navbar">
+  <div class="logo" id="logoBtn">
+    <!-- Roof SVG Logo -->
+    <svg class="logo-roof-svg" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Roof peak -->
+      <path d="M26 3 L49 24 L3 24 Z" fill="rgba(212,164,76,0.12)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Chimney -->
+      <rect x="34" y="12" width="5" height="13" rx="0.5" fill="rgba(212,164,76,0.08)" stroke="currentColor" stroke-width="1.6"/>
+      <!-- Building walls -->
+      <path d="M6 24 L6 43 L46 43 L46 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Door arch -->
+      <path d="M20 43 L20 32 Q20 28.5 23 28.5 L29 28.5 Q32 28.5 32 32 L32 43" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <!-- Left window -->
+      <rect x="9" y="27" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+      <!-- Right window -->
+      <rect x="34" y="27" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+      <!-- Roof tile lines (decorative) -->
+      <line x1="14" y1="20" x2="10" y2="24" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="26" y1="10" x2="26" y2="15" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="38" y1="20" x2="42" y2="24" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">S.NAGANATH TIMBER</span>
+      <span class="logo-sub">மரம் · ஓடு · சவுக்கு · SINCE 1990</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <!-- adminDot hidden – logo 5-click triggers admin -->
+  <div id="adminDot" style="display:none;position:fixed;pointer-events:none;"></div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobileMenu()">🏠 Home</a>
+  <a href="#products" onclick="closeMobileMenu()">🏺 Products</a>
+  <a href="#about" onclick="closeMobileMenu()">📖 About</a>
+  <a href="#contact" onclick="closeMobileMenu()">📞 Contact</a>
+</div>
+
+<!-- ═══════ TICKER ═══════ -->
+<div class="ticker">
+  <div class="ticker-label">📢 LIVE</div>
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item">📞 <a href="tel:+919443465513">+91 94434 65513</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📞 <a href="tel:+919944028425">+91 99440 28425</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">💬 <a href="https://wa.me/919443465513" target="_blank">WhatsApp Now</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📧 <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📌 <a href="https://maps.app.goo.gl/HZCZoRAwRqTony3f9" target="_blank">5/258 Bagavath Singh Road, Paramakudi</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">🏅 Premium Clay Tiles · Timber · Cement Sheets · Roofing Solutions</span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">🕐 Mon–Sat: 8AM–7PM · Sun: 9AM–2PM</span>
+    <span class="ticker-sep">★</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">📞 <a href="tel:+919443465513">+91 94434 65513</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📞 <a href="tel:+919944028425">+91 99440 28425</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">💬 <a href="https://wa.me/919443465513" target="_blank">WhatsApp Now</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📧 <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">📌 <a href="https://maps.app.goo.gl/HZCZoRAwRqTony3f9" target="_blank">5/258 Bagavath Singh Road, Paramakudi</a></span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">🏅 Premium Clay Tiles · Timber · Cement Sheets · Roofing Solutions</span>
+    <span class="ticker-sep">★</span>
+    <span class="ticker-item">🕐 Mon–Sat: 8AM–7PM · Sun: 9AM–2PM</span>
+    <span class="ticker-sep">★</span>
+  </div>
+</div>
+
+<!-- ═══════ HERO ═══════ -->
+<section id="home" class="hero" style="padding-top:120px;">
+  <div id="particles"></div>
+  <div style="position:relative;z-index:2;max-width:780px;margin:0 auto;">
+    <div class="hero-eyebrow">✦ Trusted Since 1990 · Paramakudi · Tamil Nadu ✦</div>
+    <div class="hero-title">S.நாகநாத் டிம்பர்</div>
+    <div class="hero-title-en">S. Naganath Timber</div>
+    <div class="hero-divider"><span>◈</span></div>
+    <p class="hero-tagline">
+      Premium clay tiles, timber, roofing materials &amp; sustainable building solutions.
+      Trusted by builders and architects across Tamil Nadu for over three decades.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#products">🏺 Explore Products</a>
+      <a class="btn btn-outline" href="#contact">📞 Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STATS BAR ═══════ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num" data-count="67">0</span>
+    <span class="stat-label">Years of Trust</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="30">0</span>
+    <span class="stat-label">Product Varieties</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="500000">0</span>
+    <span class="stat-label">Happy Customers</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="6">0</span>
+    <span class="stat-label">Product Categories</span>
+  </div>
+</div>
+
+<!-- ═══════ PRODUCTS ═══════ -->
+<section id="products" class="cat-section">
+  <div class="section-header">
+    <div class="section-label">Our Collection</div>
+    <div class="section-title">Premium Products</div>
+  </div>
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="filterCat('all',this)">All Products</button>
+    <button class="cat-tab" onclick="filterCat('clay-tile',this)">Clay Tiles</button>
+    <button class="cat-tab" onclick="filterCat('white-tile',this)">White / Cool Tiles</button>
+    <button class="cat-tab" onclick="filterCat('design-tile',this)">Design / Jally Tiles</button>
+    <button class="cat-tab" onclick="filterCat('sheet',this)">Sheets &amp; Boards</button>
+    <button class="cat-tab" onclick="filterCat('wood',this)">Timber &amp; Wood</button>
+    <button class="cat-tab" onclick="filterCat('misc',this)">Accessories</button>
+  </div>
+</section>
+
+<section class="products-section">
+<div class="products-grid" id="productGrid">
+
+<!-- ── CLAY TILES ── -->
+<div class="product-card" data-cat="clay-tile" data-pid="p1" data-images="image/Lakshmi front.jpg,image/Lakshmi back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p1')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Lakshmi front.jpg" class="active" alt="Lakshmi Tile">
+    <img src="image/Lakshmi back.jpg" alt="Lakshmi Tile Back">
+    <span class="card-badge">Kerala</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">Lakshmi Tile Work — இரட்டை யானை</div>
+    <div class="card-desc">Premium handcrafted Kerala clay tiles, renowned for durability &amp; traditional elegance.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Kerala</div>
+      <div class="spec-item"><strong>Type</strong>Double Elephant</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p2" data-images="image/bt front.jpg,image/bt back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p2')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/bt front.jpg" class="active" alt="Bangalore Tile">
+    <img src="image/bt back.jpg" alt="Bangalore Tile Back">
+    <span class="card-badge">Bangalore</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Bangalore Tiles Factory Polish</div>
+    <div class="card-desc">Premium polish tiles with glossy finish &amp; superior durability from Bangalore Factory.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Bangalore</div>
+      <div class="spec-item"><strong>Finish</strong>Factory Polish</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p3" data-images="image/Tbt front.jpg,image/Tbt back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p3')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Tbt front.jpg" class="active" alt="TBT Tile">
+    <img src="image/Tbt back.jpg" alt="TBT Tile Back">
+    <span class="card-badge">TBT</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Terra Bricks &amp; Tiles (TBT)</div>
+    <div class="card-desc">Premium polish enhancing shine and longevity of bricks and tiles.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>TBT</div>
+      <div class="spec-item"><strong>Type</strong>Polish Clay</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p4" data-images="image/Sastha front.jpg,image/Sastha back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p4')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Sastha front.jpg" class="active" alt="Sree Sastha Tile">
+    <img src="image/Sastha back.jpg" alt="Sree Sastha Back">
+    <span class="card-badge">Sastha</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Sree Sastha Polish Clay Tiles</div>
+    <div class="card-desc">High-quality polish tiles maintaining shine and durability over decades.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Sree Sastha</div>
+      <div class="spec-item"><strong>Origin</strong>Mallur</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p5" data-images="image/Swathi krishna front.jpg,image/Swathi krishna back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p5')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Swathi krishna front.jpg" class="active" alt="Swathi Krishna Tile">
+    <img src="image/Swathi krishna back.jpg" alt="Swathi Krishna Back">
+    <span class="card-badge">Budget</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile – Second Quality</div>
+    <div class="card-name">Swathi Krishna — இரட்டை யானை</div>
+    <div class="card-desc">Budget-friendly second quality tiles suitable for varied construction applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Grade</strong>Second Quality</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Budget</strong>Economy</div>
+      <div class="spec-item"><strong>Use</strong>General Roofing</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p6" data-images="image/Abr front.jpg,image/Abr back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p6')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Abr front.jpg" class="active" alt="APR Tile">
+    <img src="image/Abr back.jpg" alt="APR Tile Back">
+    <span class="card-badge">Nagercoil</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">APR Clay Tile</div>
+    <div class="card-desc">Premium clay tiles from Nagercoil, known for strength and aesthetic appeal.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Nagercoil</div>
+      <div class="spec-item"><strong>Brand</strong>APR</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p7" data-images="image/Ridge mukatu clay tile.jpg,image/Ride top view.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p7')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Ridge mukatu clay tile.jpg" class="active" alt="Ridge Tile">
+    <img src="image/Ride top view.jpg" alt="Ridge Top View">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">முகட்டு ஓடு — Ridge Clay Tile</div>
+    <div class="card-desc">Durable weather-resistant ridge tiles for roofing protection and aesthetics.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Ridge</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Use</strong>Roof Ridge</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p8" data-images="image/Roof tile.jpg,image/Roof tile 1.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p8')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Roof tile.jpg" class="active" alt="Roof Tile">
+    <img src="image/Roof tile 1.jpg" alt="Roof Tile 2">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">கூரை ஓடு — Roof Clay Tile</div>
+    <div class="card-desc">High-quality roof clay tiles with durability, weather resistance, and traditional aesthetics.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Roofing</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p9" data-images="image/Smoke clay tile.jpg,image/Smokeclaytiletop.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p9')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Smoke clay tile.jpg" class="active" alt="Smoke Tile">
+    <img src="image/Smokeclaytiletop.jpg" alt="Smoke Tile Top">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">புகை ஓடு — Smoke Clay Tile</div>
+    <div class="card-desc">Premium quality smoke clay tiles with traditional aesthetic for roofing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Smoke Vent</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Use</strong>Ventilation</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p10" data-images="image/Glass tile front.jpg,image/Glass tile back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p10')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Glass tile front.jpg" class="active" alt="Glass Tile">
+    <img src="image/Glass tile back.jpg" alt="Glass Tile Back">
+    <span class="card-badge">Light</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Glass Clay Tile</div>
+    <div class="card-name">கண்ணாடி ஓடு — Glass Clay Tile</div>
+    <div class="card-desc">Elegant glass clay tiles allowing natural light while maintaining strength.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Transparent</div>
+      <div class="spec-item"><strong>Feature</strong>Natural Light</div>
+      <div class="spec-item"><strong>Use</strong>Roof Accent</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHITE TILES ── -->
+<div class="product-card" data-cat="white-tile" data-pid="p11" data-images="image/Pr front.jpg,image/Pr whitetile logo.jpg,image/Pr line.jpg,image/Pr back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p11')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Pr front.jpg" class="active" alt="PR White Tile">
+    <img src="image/Pr whitetile logo.jpg" alt="PR Logo">
+    <img src="image/Pr line.jpg" alt="PR Line">
+    <img src="image/Pr back.jpg" alt="PR Back">
+    <span class="card-badge">Energy Saving</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">White Cooling Tile</div>
+    <div class="card-name">PR White Cooling Tile</div>
+    <div class="card-desc">Energy-efficient white tiles designed to reduce heat and maintain indoor comfort.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>PR</div>
+      <div class="spec-item"><strong>Feature</strong>Heat Reduction</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="white-tile" data-pid="p12" data-images="image/Abr white front.jpg,image/Apr white tile logo.jpg,image/Abr white back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p12')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Abr white front.jpg" class="active" alt="APR White Tile">
+    <img src="image/Apr white tile logo.jpg" alt="APR Logo">
+    <img src="image/Abr white back.jpg" alt="APR White Back">
+    <span class="card-badge">Cool</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">White Cooling Tile</div>
+    <div class="card-name">APR White Cooling Tile</div>
+    <div class="card-desc">High-quality cool white tiles keeping spaces fresh and stylish.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>APR</div>
+      <div class="spec-item"><strong>Feature</strong>Cooling</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DESIGN TILES ── -->
+<div class="product-card" data-cat="design-tile" data-pid="p13" data-images="image/Triple adr.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p13')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Triple adr.jpg" class="active" alt="Triple ADR">
+    <span class="card-badge">Classic</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Trible ADR Classic</div>
+    <div class="card-desc">High-quality Trible ADR Classic tiles designed for strength and durability.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>ADR</div>
+      <div class="spec-item"><strong>Type</strong>Design</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Classic</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p14" data-images="image/Master bamboo.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p14')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Master bamboo.jpg" class="active" alt="Master Bamboo Tile">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Master Bamboo</div>
+    <div class="card-desc">Eco-friendly stylish Master Bamboo tiles offering natural aesthetic.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Master</div>
+      <div class="spec-item"><strong>Style</strong>Bamboo Pattern</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p15" data-images="image/Portiques.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p15')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Portiques.jpg" class="active" alt="Portiques Tile">
+    <span class="card-badge">Design</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Portiques</div>
+    <div class="card-desc">Stylish Portiques tiles offering elegant design for traditional spaces.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Decorative</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Use</strong>Facade</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p16" data-images="image/Petaljally.jpg,image/Petal full.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p16')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Petaljally.jpg" class="active" alt="Petal Jally">
+    <img src="image/Petal full.jpg" alt="Petal Full">
+    <span class="card-badge">Ventilation</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Jally / Ventilation Tile</div>
+    <div class="card-name">Petal Jally Tile</div>
+    <div class="card-desc">Stylish Petal Jally tiles enhancing ventilation and aesthetics in traditional spaces.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Jally / Lattice</div>
+      <div class="spec-item"><strong>Feature</strong>Ventilation</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SHEETS ── -->
+<div class="product-card" data-cat="sheet" data-pid="p17" data-images="image/Visaka cementsheet.jpg,image/Visaka logo.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p17')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Visaka cementsheet.jpg" class="active" alt="Visaka Sheet">
+    <img src="image/Visaka logo.jpg" alt="Visaka Logo">
+    <span class="card-badge">Cement</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Sheet</div>
+    <div class="card-name">Visaka Cement Sheet</div>
+    <div class="card-desc">Durable high-quality Visaka cement sheets for construction needs.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Visaka</div>
+      <div class="spec-item"><strong>Sizes</strong>6mm, 8mm, 10mm</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Cladding</div>
+      <div class="spec-item"><strong>Grade</strong>ISI</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="sheet" data-pid="p18" data-images="image/Tin_sheet.jpg,image/Tin_sheet_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p18')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Tin_sheet.jpg" class="active" alt="Tin Sheet">
+    <img src="image/Tin_sheet_2.jpg" alt="Tin Sheet Design">
+    <span class="card-badge">Metal</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Tin Sheet</div>
+    <div class="card-name">தகரம் — Tin Roofing Sheet</div>
+    <div class="card-desc">Weather-resistant tin sheets ideal for roofing and fencing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>6ft, 8ft, 10ft</div>
+      <div class="spec-item"><strong>Material</strong>Galvanised</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Fencing</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="sheet" data-pid="p19" data-images="image/Vasar group.jpg,image/Vasar front.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p19')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Vasar group.jpg" class="active" alt="Vasar Sheet">
+    <img src="image/Vasar front.jpg" alt="Vasar Front">
+    <span class="card-badge">Vasar</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Sheet</div>
+    <div class="card-name">வாசர் — Vasar Cement Sheet</div>
+    <div class="card-desc">Durable high-quality Vasar cement sheets for roofing applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Vasar</div>
+      <div class="spec-item"><strong>Sizes</strong>6mm, 8mm, 10mm</div>
+      <div class="spec-item"><strong>Use</strong>Roofing</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WOOD / TIMBER ── -->
+<div class="product-card" data-cat="wood" data-pid="p20" data-images="image/Ripper1.jpg,image/Ripper 2.jpg,image/Ripper3.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p20')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Ripper1.jpg" class="active" alt="Ripper Wood">
+    <img src="image/Ripper 2.jpg" alt="Ripper Sizes">
+    <img src="image/Ripper3.jpg" alt="Ripper Sizes 2">
+    <span class="card-badge">Timber</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Timber</div>
+    <div class="card-name">ரிப்பர் — Ripper Wood</div>
+    <div class="card-desc">High-quality ripper wood for construction and furniture in various sizes.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>3,4,5,6,7,8,9</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Treatment</strong>Seasoned</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p21" data-images="image/Whip_wood.jpg,image/Whip_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p21')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Whip_wood.jpg" class="active" alt="Whip Wood">
+    <img src="image/Whip_wood_2.jpg" alt="Whip Wood Sizes">
+    <span class="card-badge">Casuarina</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Wood</div>
+    <div class="card-name">சவுக்கு மரம் — Whip Wood</div>
+    <div class="card-desc">Strong durable Casuarina wood for construction in multiple sizes.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Casuarina</div>
+      <div class="spec-item"><strong>Sizes</strong>Multiple</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p22" data-images="image/Coconut_wood.jpg,image/Coconut_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p22')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Coconut_wood.jpg" class="active" alt="Coconut Wood">
+    <img src="image/Coconut_wood_2.jpg" alt="Coconut Wood 2">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Wood</div>
+    <div class="card-name">தேங்காய் மரம் — Coconut Wood</div>
+    <div class="card-desc">Eco-friendly coconut wood suitable for traditional construction and crafts.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Coconut</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Eco</strong>Sustainable</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p23" data-images="image/Pine_wood.jpg,image/Pine_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p23')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Pine_wood.jpg" class="active" alt="Pine Wood">
+    <img src="image/Pine_wood_2.jpg" alt="Pine Wood 2">
+    <span class="card-badge">Pine</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Timber</div>
+    <div class="card-name">Pine Wood</div>
+    <div class="card-desc">Smooth premium pine wood for furniture, framing, and interior finish work.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Pine</div>
+      <div class="spec-item"><strong>Finish</strong>Smooth</div>
+      <div class="spec-item"><strong>Use</strong>Furniture/Frame</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ACCESSORIES / MISC ── -->
+<div class="product-card" data-cat="misc" data-pid="p24" data-images="image/Lime.jpg,image/Lime_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p24')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Lime.jpg" class="active" alt="Lime">
+    <img src="image/Lime_2.jpg" alt="Lime 2">
+    <span class="card-badge">Essential</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Building Material</div>
+    <div class="card-name">சுண்ணாம்பு — Lime</div>
+    <div class="card-desc">High-quality construction lime for plastering, whitewashing, and building.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Building Lime</div>
+      <div class="spec-item"><strong>Use</strong>Plastering</div>
+      <div class="spec-item"><strong>Purity</strong>High</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p25" data-images="image/Nails.jpg,image/Nails_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p25')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Nails.jpg" class="active" alt="Nails">
+    <img src="image/Nails_2.jpg" alt="Nails 2">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Hardware</div>
+    <div class="card-name">ஆணி — Construction Nails</div>
+    <div class="card-desc">Heavy-duty construction nails in multiple sizes for roofing and carpentry.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>Multiple</div>
+      <div class="spec-item"><strong>Material</strong>Steel</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Carpentry</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p26" data-images="image/God_image_tile.jpg,image/God_image_tile_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p26')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/God_image_tile.jpg" class="active" alt="God Image Tile">
+    <img src="image/God_image_tile_2.jpg" alt="God Image Design">
+    <span class="card-badge">Temple</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Decorative Tile</div>
+    <div class="card-name">God Image Tile</div>
+    <div class="card-desc">Beautifully designed god image tiles for temples, pooja rooms, and décor.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Decorative</div>
+      <div class="spec-item"><strong>Use</strong>Temple/Pooja</div>
+      <div class="spec-item"><strong>Designs</strong>Multiple</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p27" data-images="image/Group.coir.jpg,image/5 coir.jpg,image/10 coir.jpg,image/Coir bundle side.jpg,image/Coir bundle top.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p27')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Group.coir.jpg" class="active" alt="Coir Rope">
+    <img src="image/5 coir.jpg" alt="5mm Coir">
+    <img src="image/10 coir.jpg" alt="10mm Coir">
+    <img src="image/Coir bundle side.jpg" alt="Bundle Side">
+    <img src="image/Coir bundle top.jpg" alt="Bundle Top">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Rope / Coir</div>
+    <div class="card-name">கயிறு — Coir Rope</div>
+    <div class="card-desc">Strong durable coir rope for construction, packaging, and household use.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>5mm, 10mm</div>
+      <div class="spec-item"><strong>Material</strong>Natural Coir</div>
+      <div class="spec-item"><strong>Use</strong>Multi-purpose</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p28" data-images="image/Manikocham group.jpg,image/Manikocham small.jpg,image/Manikocham big.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p28')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Manikocham group.jpg" class="active" alt="Manikocham">
+    <img src="image/Manikocham small.jpg" alt="Manikocham Small">
+    <img src="image/Manikocham big.jpg" alt="Manikocham Big">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Rope</div>
+    <div class="card-name">மணிக்கொச்சம்</div>
+    <div class="card-desc">Strong and durable rope for construction, packaging, and household applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>Small, Large</div>
+      <div class="spec-item"><strong>Material</strong>Natural Fibre</div>
+      <div class="spec-item"><strong>Use</strong>Multi-purpose</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p29" data-images="image/Palai_palm_leaf.jpg,image/Palai_palm_leaf_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p29')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Palai_palm_leaf.jpg" class="active" alt="Palm Leaf">
+    <img src="image/Palai_palm_leaf_2.jpg" alt="Palm Leaf Roofing">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Natural Roofing</div>
+    <div class="card-name">பாலை — Palm Leaf</div>
+    <div class="card-desc">Natural eco-friendly palm leaves for traditional roofing and sustainable applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Palm Leaf</div>
+      <div class="spec-item"><strong>Material</strong>Natural</div>
+      <div class="spec-item"><strong>Use</strong>Traditional Roofing</div>
+      <div class="spec-item"><strong>Grade</strong>Eco</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p30" data-images="image/Cement_pillar.jpg,image/Cement_pillar_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p30')" title="Delete">✕</button>
+  <div class="card-img-wrap">
+    <img src="image/Cement_pillar.jpg" class="active" alt="Cement Pillar">
+    <img src="image/Cement_pillar_2.jpg" alt="Cement Pillar Design">
+    <span class="card-badge">Structural</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Product</div>
+    <div class="card-name">சிமெண்ட் தூண் — Cement Pillar</div>
+    <div class="card-desc">Strong durable cement pillars for construction and fencing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>6ft, 8ft, 10ft</div>
+      <div class="spec-item"><strong>Material</strong>RCC</div>
+      <div class="spec-item"><strong>Use</strong>Fencing/Construction</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom products anchor -->
+<div id="customProductsAnchor"></div>
+</div>
+</section>
+
+<!-- ═══════ ABOUT ═══════ -->
+<section id="about" class="about-section">
+  <div class="about-inner">
+
+    <!-- ── Founder / Father Portrait ── -->
+    <div class="founder-column reveal">
+      <div class="founder-frame">
+        <!-- Replace 'father_image.jpg' with actual photo path -->
+        <img
+          src="image\phone look.jpg"
+          class="founder-photo"
+          alt="Founder S. Naganath"
+          onerror="this.style.display='none'; document.getElementById('founderSilhouette').style.display='flex';"
+        >
+        <!-- Elegant silhouette fallback if image missing -->
+        <div class="founder-silhouette" id="founderSilhouette" style="display:none;">
+          <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="32" r="24" stroke="rgba(212,164,76,0.5)" stroke-width="1.5"/>
+            <path d="M8 120 Q8 76 50 76 Q92 76 92 120" stroke="rgba(212,164,76,0.5)" stroke-width="1.5"/>
+            <!-- decorative ring -->
+            <circle cx="50" cy="32" r="30" stroke="rgba(212,164,76,0.15)" stroke-width="0.8" stroke-dasharray="4 3"/>
+          </svg>
+          <span>Founder</span>
+        </div>
+        <!-- Corner decorations -->
+        <div class="founder-inner-corner tr"></div>
+        <div class="founder-inner-corner bl"></div>
+        <!-- Name overlay at bottom of frame -->
+        <div class="founder-frame-banner">
+          <div class="founder-name-in-frame">S. Naganath</div>
+          <div class="founder-role-in-frame">Founder &amp; Owner</div>
+        </div>
+      </div>
+      <div class="founder-est">
+        <div class="founder-est-tag">
+          <span>EST. 1958 · PARAMAKUDI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Story Text ── -->
+    <div class="about-text-col reveal" style="transition-delay:0.15s;">
+      <div class="about-eyebrow">Our Legacy</div>
+      <h2 class="about-heading">
+        Building Tamil Nadu,<br><em>One Roof at a Time</em>
+      </h2>
+      <div class="about-divider"></div>
+      <div class="about-body">
+        <p>Established in <strong>1958</strong>, our shop has built a long-standing reputation for quality and craftsmanship. Originally founded under a different name, we rebranded in <strong>1990 as S.Naganath Timber</strong> to reflect our growth and expanded offerings.</p>
+        <p>We specialise in high-quality <strong>clay tiles, timber, cement sheets, roofing materials, lime, coir rope</strong> and more. With decades of experience, we pride ourselves on excellence in durability and aesthetics.</p>
+        <p>Located in <strong>Paramakudi, Ramanathapuram District</strong>, we serve architects, builders, and homeowners across Tamil Nadu with pride and passion.</p>
+      </div>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="about-feat-title">Experience</div>
+          <div class="about-feat-val">67+ Years in Business</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-title">Products</div>
+          <div class="about-feat-val">30+ Varieties</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-title">Customers</div>
+          <div class="about-feat-val">5 Lakhs+ Happy Clients</div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-title">Payment</div>
+          <div class="about-feat-val">GPay · PhonePe · Paytm</div>
+        </div>
+      </div>
+      <div class="about-addr">
+        <span class="about-addr-icon">📍</span>
+        <div class="about-addr-text">
+          5/258 Bagavath Singh Road, Paramakudi – 623707<br>
+          Ramanathapuram District, Tamil Nadu, India
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section id="contact" class="contact-section">
+  <div class="section-header" style="padding-top:4rem;">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">Contact Us</div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <span class="contact-icon">📞</span>
+      <span class="contact-label">Phone</span>
+      <a href="tel:+919443465513">+91 94434 65513</a>
+      <a href="tel:+919944028425">+91 99440 28425</a>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">💬</span>
+      <span class="contact-label">WhatsApp</span>
+      <a href="https://wa.me/919443465513" target="_blank">+91 94434 65513</a>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">📧</span>
+      <span class="contact-label">Email</span>
+      <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">📌</span>
+      <span class="contact-label">Address</span>
+      <a href="https://maps.app.goo.gl/HZCZoRAwRqTony3f9" target="_blank">
+        5/258 Bagavath Singh Road<br>Paramakudi – 623707<br>Ramanathapuram Dt, TN
+      </a>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">💳</span>
+      <span class="contact-label">Payment</span>
+      <span>Google Pay · PhonePe · Paytm</span>
+    </div>
+    <div class="contact-card">
+      <span class="contact-icon">🕐</span>
+      <span class="contact-label">Hours</span>
+      <span>Mon–Sat: 8 AM – 7 PM<br>Sunday: 9 AM – 2 PM</span>
+    </div>
+  </div>
+
+  <!-- WhatsApp CTA -->
+  <div class="whatsapp-cta">
+    <div class="whatsapp-cta-text">
+      <strong>Quick Enquiry?</strong><br>
+      Send us a WhatsApp message for fast pricing and availability
+    </div>
+    <a class="whatsapp-btn" href="https://wa.me/919443465513?text=Hi%2C%20I%20want%20to%20enquire%20about%20your%20products" target="_blank">
+      💬 Chat on WhatsApp
+    </a>
+  </div>
+
+  <!-- Google Review CTA -->
+  <div class="google-review-cta-box reveal">
+    <div class="google-review-cta-left">
+      <svg viewBox="0 0 488 512" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+        <path fill="#4285f4" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+      </svg>
+      <div class="google-review-cta-info">
+        <strong>Loved our products? Tell the world!</strong>
+        <div class="stars-row">★★★★★</div>
+        <span>Your review helps other families in Tamil Nadu find us</span>
+      </div>
+    </div>
+    <a class="review-google-btn" href="https://g.page/r/Ce2hhmKMF3nOEAE/review" target="_blank" rel="noopener">
+      <svg viewBox="0 0 488 512" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <path fill="#4285f4" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+      </svg>
+      Rate on Google
+    </a>
+  </div>
+</section>
+
+<!-- Google Review Float Button -->
+<a class="google-review-float" id="googleReviewFloat" href="https://g.page/r/Ce2hhmKMF3nOEAE/review" target="_blank" rel="noopener">
+  <svg viewBox="0 0 488 512" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#4285f4" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+  </svg>
+  <div class="google-review-float-text">
+    <span>Trusted by 5 Lakh+ customers</span>
+    <span>Rate us on Google ★★★★★</span>
+  </div>
+</a>
+
+<!-- Review Popup (shows every 2 mins) -->
+<div class="review-popup-backdrop" id="reviewPopup">
+  <div class="review-popup">
+    <div class="review-popup-header">
+      <div class="review-popup-brand">
+        <svg viewBox="0 0 488 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#4285f4" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+        </svg>
+        <span class="review-popup-brand-text">What our customers say</span>
+      </div>
+      <button class="review-popup-close" onclick="closeReviewPopup()">×</button>
+    </div>
+    <div class="review-card" id="reviewCard">
+      <div class="review-card-top">
+        <div class="review-avatar" id="reviewAvatar" style="background:#c1440e;">R</div>
+        <div class="review-meta">
+          <div class="review-name" id="reviewName">nalini</div>
+          <div class="review-date" id="reviewDateEl">2 weeks ago</div>
+        </div>
+      </div>
+      <div class="review-stars" id="reviewStars">★★★★★</div>
+      <div class="review-text" id="reviewText">Loading review...</div>
+    </div>
+    <div class="review-popup-footer">
+      <a class="review-cta-btn" href="https://g.page/r/Ce2hhmKMF3nOEAE/review" target="_blank" rel="noopener">
+        <svg viewBox="0 0 488 512" xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+          <path fill="#fff" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/>
+        </svg>
+        Write a Review
+      </a>
+      <div class="review-nav-dots" id="reviewNavDots"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <svg class="footer-logo-svg" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26 3 L49 24 L3 24 Z" fill="rgba(212,164,76,0.12)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="34" y="12" width="5" height="13" rx="0.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M6 24 L6 43 L46 43 L46 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 43 L20 32 Q20 28.5 23 28.5 L29 28.5 Q32 28.5 32 32 L32 43" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        <rect x="9" y="27" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="34" y="27" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <div class="footer-logo-name">S.NAGANATH TIMBER</div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-info">
+      © 2025 S.Naganath Timber · Since 1990 · Paramakudi, Ramanathapuram District<br>
+      <a href="tel:+919443465513">+91 94434 65513</a> · <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a><br>
+      All Rights Reserved · Made with ♥ in Tamil Nadu
+    </div>
+  </div>
+  <div class="footer-admin-trigger" id="footerAdminTrigger">·</div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- ═══════ PRODUCT DETAIL MODAL ═══════ -->
+<div class="pd-backdrop" id="pdModal" role="dialog" aria-modal="true" aria-label="Product Details">
+  <div class="pd-shell" id="pdShell">
+    <button class="pd-close-btn" id="pdCloseBtn" aria-label="Close">×</button>
+    <div class="pd-img-col">
+      <div class="pd-img-stage">
+        <img id="pdMainImg" class="pd-main-img" src="" alt="Product">
+        <button class="pd-arrow pd-arrow-prev" id="pdPrev" aria-label="Previous">‹</button>
+        <button class="pd-arrow pd-arrow-next" id="pdNext" aria-label="Next">›</button>
+        <div class="pd-counter-pill" id="pdCounter">1 / 1</div>
+      </div>
+      <div class="pd-thumbs-strip" id="pdThumbs"></div>
+    </div>
+    <div class="pd-info-col" id="pdInfoCol">
+      <div class="pd-category-tag" id="pdCategory">Category</div>
+      <h2 class="pd-product-name" id="pdName">Product Name</h2>
+      <div class="pd-gold-rule"></div>
+      <p class="pd-description" id="pdDesc">Description</p>
+      <div class="pd-specs-box" id="pdSpecs"></div>
+      <div class="pd-cta-row">
+        <a href="tel:+919443465513" class="pd-cta-btn pd-cta-call">📞 Call Now</a>
+        <a href="https://wa.me/919443465513" target="_blank" rel="noopener" class="pd-cta-btn pd-cta-wa">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ ADMIN LOGIN ═══════ -->
+<div class="admin-login-bg" id="adminLoginBg">
+  <div class="admin-login-box">
+    <div class="admin-lock-icon">🔒</div>
+    <h2>Admin Access</h2>
+    <p>S.Naganath Timber Dashboard</p>
+    <div class="admin-login-error" id="adminLoginError"></div>
+    <input type="email" class="admin-email-input" id="adminEmailInput"
+      placeholder="Admin Email"
+      onkeydown="if(event.key==='Enter')document.getElementById('adminPwInput').focus()"
+      autocomplete="email">
+    <input type="password" class="admin-pw-input" id="adminPwInput"
+      placeholder="Password"
+      onkeydown="if(event.key==='Enter')doAdminLogin()"
+      autocomplete="current-password">
+    <button class="admin-login-btn" id="adminLoginBtn" onclick="doAdminLogin()">Login with Supabase</button>
+    <button class="admin-login-cancel" onclick="closeAdminLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══════ ADMIN DASHBOARD ═══════ -->
+<div class="admin-panel" id="adminPanel" onclick="handleAdminBgClick(event)">
+  <div class="admin-panel-inner" id="adminPanelInner">
+    <div class="admin-header">
+      <div class="admin-header-left">
+        <div class="admin-shield">🛡️</div>
+        <div>
+          <h2>Admin Dashboard</h2>
+          <p id="adminUserEmail" style="color:var(--gold);font-size:0.72rem;letter-spacing:0.5px;">Supabase Admin</p>
+          <span class="sb-status connected" id="sbStatus">Connected</span>
+        </div>
+      </div>
+      <button class="admin-logout-btn" onclick="adminLogout()">Logout</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('add',this)">Add Product</button>
+      <button class="admin-tab" onclick="switchAdminTab('manage',this)">Manage</button>
+      <button class="admin-tab" onclick="switchAdminTab('settings',this)">Settings</button>
+    </div>
+    <div class="admin-content" id="adminContent">
+
+      <!-- ADD / EDIT PRODUCT -->
+      <div class="admin-tab-pane active" id="tab-add">
+        <div class="admin-edit-mode-banner" id="editModeBanner">
+          <span>✏️ Editing existing product</span>
+          <button class="admin-edit-cancel-btn" onclick="cancelEdit()">Cancel Edit</button>
+        </div>
+        <div class="admin-field">
+          <label>Product Name *</label>
+          <input type="text" id="ap-name" placeholder="e.g. Lakshmi Tile Work">
+        </div>
+        <div class="admin-field">
+          <label>Tamil Name</label>
+          <input type="text" id="ap-tamil" placeholder="e.g. இரட்டை யானை">
+        </div>
+        <div class="admin-field">
+          <label>Category *</label>
+          <select id="ap-cat">
+            <option value="clay-tile">Clay Tiles</option>
+            <option value="white-tile">White / Cool Tiles</option>
+            <option value="design-tile">Design / Jally Tiles</option>
+            <option value="sheet">Sheets &amp; Boards</option>
+            <option value="wood">Timber &amp; Wood</option>
+            <option value="misc">Accessories / Misc</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label>Badge Text</label>
+          <input type="text" id="ap-badge" placeholder="e.g. Kerala, Premium, Eco">
+        </div>
+        <div class="admin-field">
+          <label>Description *</label>
+          <textarea id="ap-desc" placeholder="Brief product description..."></textarea>
+        </div>
+        <div class="admin-field">
+          <label>Product Images (Drag &amp; Drop or Click)</label>
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="ap-image-files" accept="image/*" multiple onchange="handleFileSelect(this.files)">
+            <div class="drop-zone-icon">🖼️</div>
+            <div class="drop-zone-text">
+              <strong>Drag &amp; drop images here</strong><br>
+              or click to browse · JPG, PNG, WEBP · Max 5MB each
+            </div>
+          </div>
+          <div class="upload-previews" id="uploadPreviews"></div>
+          <div class="upload-progress" id="uploadProgress">⏫ Uploading images…</div>
+          <div class="field-hint">Images upload to Supabase Storage automatically</div>
+        </div>
+        <div class="admin-field">
+          <label>Product Specs (Label : Value)</label>
+          <div class="admin-specs-grid">
+            <div class="admin-spec-pair">
+              <input type="text" id="sp1l" placeholder="Label" style="width:40%">
+              <input type="text" id="sp1v" placeholder="Value" style="width:60%">
+            </div>
+            <div class="admin-spec-pair">
+              <input type="text" id="sp2l" placeholder="Label" style="width:40%">
+              <input type="text" id="sp2v" placeholder="Value" style="width:60%">
+            </div>
+            <div class="admin-spec-pair">
+              <input type="text" id="sp3l" placeholder="Label" style="width:40%">
+              <input type="text" id="sp3v" placeholder="Value" style="width:60%">
+            </div>
+            <div class="admin-spec-pair">
+              <input type="text" id="sp4l" placeholder="Label" style="width:40%">
+              <input type="text" id="sp4v" placeholder="Value" style="width:60%">
+            </div>
+          </div>
+        </div>
+        <button class="admin-submit-btn" id="addProductBtn" onclick="addProduct()">➕ Add Product</button>
+        <input type="hidden" id="ap-edit-pid" value="">
+        <div class="admin-success" id="addSuccess">✅ Product added successfully!</div>
+      </div>
+
+      <!-- MANAGE PRODUCTS -->
+      <div class="admin-tab-pane" id="tab-manage">
+        <div class="admin-product-list" id="adminProductList"></div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="admin-tab-pane" id="tab-settings">
+        <div class="admin-info-box">
+          <h4>🔑 Supabase Auth — Change Admin Password</h4>
+          <p>
+            1. Go to your <strong style="color:var(--gold2);">Supabase Dashboard</strong> → Authentication → Users<br>
+            2. Find your admin email, click the three-dot menu → "Send Password Reset"<br>
+            3. Check your email and follow the link to set a new password.<br>
+            4. You can also directly edit the user password from the dashboard.
+          </p>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>📦 Supabase Storage — Uploaded Images</h4>
+          <p>
+            All product images are stored in the <code>product-images</code> bucket.<br>
+            Go to Supabase → Storage → product-images to view/delete files.
+          </p>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>🔁 Real-time Sync</h4>
+          <p>Products are synced in real-time across all browsers. When you add, edit, or delete a product, every visitor sees the change within seconds without refreshing.</p>
+          <div style="margin-top:0.6rem;">Connection: <span class="sb-status connected" id="sbStatusSettings">Live</span></div>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>🗑️ Reset / Restore Visibility</h4>
+          <p>Hidden built-in products are stored locally. Click to restore them to visible.</p>
+          <button onclick="resetHiddenBuiltins()" style="margin-top:0.8rem;padding:0.5rem 1.2rem;background:rgba(193,68,14,0.2);border:1px solid rgba(193,68,14,0.4);color:#e05012;font-size:0.72rem;letter-spacing:1px;cursor:pointer;border-radius:3px;">Restore Hidden Originals</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+'use strict';
+
+const SUPABASE_URL      = 'https://rzlvycwpqgxjxhsmfnoy.supabase.co';       // e.g. https://abcdefg.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6bHZ5Y3dwcWd4anhoc21mbm95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTU4MDksImV4cCI6MjA5NjI5MTgwOX0.VVoLTOsfHi6PWVOIfxRj2VZiKT9Wr7KCf7S4ukaNS8k';  // starts with "eyJ..."
+
+/* ── Init Supabase client ── */
+const { createClient } = window.supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ── Floating particles (hero) ── */
+(function spawnParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 12; i++) {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    const w = 18 + Math.random() * 38;
+    const h = 12 + Math.random() * 18;
+    el.style.cssText = `width:${w}px;height:${h}px;left:${Math.random()*100}%;animation-duration:${10+Math.random()*14}s;animation-delay:${Math.random()*12}s;border-radius:3px;opacity:0;`;
+    container.appendChild(el);
+  }
+})();
+
+/* ── Navbar scroll effect ── */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+/* ── Mobile menu ── */
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+
+function formatStatNum(n) {
+  if (n >= 100000) return Math.floor(n / 100000) + ' Lakh';
+  if (n >= 1000) return Math.floor(n / 1000) + 'K';
+  return n;
+}
+function animateCount(el) {
+  const target = parseInt(el.dataset.count);
+  const dur = 1800; const step = dur / 60;
+  let current = 0;
+  const inc = target / (dur / step);
+  const timer = setInterval(() => {
+    current += inc;
+    if (current >= target) { current = target; clearInterval(timer); }
+    el.textContent = formatStatNum(Math.floor(current)) + '+';
+  }, step);
+}
+const statsObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); statsObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => statsObs.observe(el));
+
+
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); sectionObs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => sectionObs.observe(el));
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const siblings = Array.from(document.querySelectorAll('.product-card:not(.hidden)'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('in-view'), (idx % 3) * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+
+function initReveal() {
+  document.querySelectorAll('.product-card').forEach(card => revealObserver.observe(card));
+}
+initReveal();
+
+document.addEventListener('mousemove', (e) => {
+  const card = e.target.closest('.product-card');
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+  const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+  card.style.transform = `perspective(1200px) rotateX(${-y*12}deg) rotateY(${x*16}deg) translateZ(18px)`;
+  const glare = card.querySelector('.card-glare');
+  if (glare) {
+    const px = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const py = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+    glare.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,240,200,0.13), transparent 65%)`;
+  }
+});
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+document.querySelectorAll('.product-card').forEach(card => {
+  const imgs = card.querySelectorAll('.card-img-wrap img');
+  const dots = card.querySelectorAll('.card-dot');
+  let idx = 0;
+  if (imgs.length > 1) {
+    setInterval(() => {
+      imgs[idx].classList.remove('active');
+      if (dots[idx]) dots[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+      if (dots[idx]) dots[idx].classList.add('active');
+    }, 2600 + Math.random() * 800);
+  }
+});
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    const match = cat === 'all' || card.dataset.cat === cat;
+    card.classList.toggle('hidden', !match);
+    if (match && !card.classList.contains('in-view')) revealObserver.observe(card);
+  });
+}
+
+let pdImgs = [], pdIdx = 0;
+
+function openModal(card) {
+  const rawSrcs = card.dataset.images || '';
+  const srcs = rawSrcs.split(',').map(s => s.trim()).filter(Boolean);
+  if (!srcs.length) return;
+  pdImgs = srcs; pdIdx = 0;
+
+  document.getElementById('pdCategory').textContent = card.querySelector('.card-cat')?.textContent?.trim() || '';
+  document.getElementById('pdName').textContent     = card.querySelector('.card-name')?.textContent?.trim() || '';
+  document.getElementById('pdDesc').textContent     = card.querySelector('.card-desc')?.textContent?.trim() || '';
+
+  const specsBox = document.getElementById('pdSpecs');
+  specsBox.innerHTML = Array.from(card.querySelectorAll('.spec-item')).map(el => {
+    const lbl = el.querySelector('strong')?.textContent?.trim() || '';
+    const val = el.textContent.replace(lbl,'').trim();
+    return `<div class="pd-spec-row"><span class="pd-spec-lbl">${lbl}</span><span class="pd-spec-val">${val}</span></div>`;
+  }).join('');
+
+  const mainImg = document.getElementById('pdMainImg');
+  mainImg.src = srcs[0]; mainImg.classList.remove('fading');
+  document.getElementById('pdPrev').hidden = srcs.length <= 1;
+  document.getElementById('pdNext').hidden = srcs.length <= 1;
+  _pdUpdateCounter();
+
+  const strip = document.getElementById('pdThumbs');
+  strip.innerHTML = srcs.length > 1 ? srcs.map((src, i) =>
+    `<img src="${src}" class="pd-thumb ${i===0?'active':''}" onclick="pdJump(${i})" alt="Thumb ${i+1}">`
+  ).join('') : '';
+
+  const backdrop = document.getElementById('pdModal');
+  backdrop.classList.add('show');
+  backdrop.style.opacity = '0';
+  requestAnimationFrame(() => { backdrop.style.transition = 'opacity 0.25s'; backdrop.style.opacity = '1'; });
+  document.body.style.overflow = 'hidden';
+}
+
+function _pdUpdateCounter() {
+  document.getElementById('pdCounter').textContent = `${pdIdx + 1} / ${pdImgs.length}`;
+}
+
+function pdJump(i) {
+  if (i === pdIdx) return;
+  const img = document.getElementById('pdMainImg');
+  img.classList.add('fading');
+  setTimeout(() => { img.src = pdImgs[i]; img.classList.remove('fading'); }, 280);
+  document.querySelectorAll('.pd-thumb').forEach((t,j) => t.classList.toggle('active', j === i));
+  pdIdx = i; _pdUpdateCounter();
+}
+
+document.getElementById('pdPrev').addEventListener('click', () => { if (pdIdx > 0) pdJump(pdIdx - 1); });
+document.getElementById('pdNext').addEventListener('click', () => { if (pdIdx < pdImgs.length - 1) pdJump(pdIdx + 1); });
+
+function closeModal() {
+  const backdrop = document.getElementById('pdModal');
+  backdrop.style.opacity = '0';
+  setTimeout(() => { backdrop.classList.remove('show'); backdrop.style.opacity = ''; }, 250);
+  document.body.style.overflow = '';
+}
+document.getElementById('pdCloseBtn').addEventListener('click', closeModal);
+document.getElementById('pdModal').addEventListener('click', (e) => { if (e.target === document.getElementById('pdModal')) closeModal(); });
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('pdModal').classList.contains('show')) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowLeft' && pdIdx > 0) pdJump(pdIdx - 1);
+  if (e.key === 'ArrowRight' && pdIdx < pdImgs.length - 1) pdJump(pdIdx + 1);
+});
+
+
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+  document.getElementById('googleReviewFloat').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+let _logoClicks = 0, _logoTimer = null;
+document.getElementById('logoBtn').addEventListener('click', () => {
+  _logoClicks++;
+  clearTimeout(_logoTimer);
+  if (_logoClicks >= 5) { _logoClicks = 0; openAdminLogin(); }
+  else { _logoTimer = setTimeout(() => { _logoClicks = 0; }, 2500); }
+});
+
+function openAdminLogin() {
+  /* Check if already signed in */
+  sb.auth.getSession().then(({ data: { session } }) => {
+    if (session) { openAdminPanel(session.user); return; }
+    document.getElementById('adminLoginBg').classList.add('show');
+    setTimeout(() => document.getElementById('adminEmailInput').focus(), 100);
+  });
+}
+
+function closeAdminLogin() {
+  document.getElementById('adminLoginBg').classList.remove('show');
+  document.getElementById('adminLoginError').style.display = 'none';
+}
+
+async function doAdminLogin() {
+  const btn = document.getElementById('adminLoginBtn');
+  const err = document.getElementById('adminLoginError');
+  const email = document.getElementById('adminEmailInput').value.trim();
+  const pw    = document.getElementById('adminPwInput').value;
+
+  if (!email || !pw) {
+    err.textContent = 'Please enter email and password.';
+    err.style.display = 'block'; return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  err.style.display = 'none';
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pw });
+
+  if (error) {
+    err.textContent = error.message || 'Login failed. Check credentials.';
+    err.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Login with Supabase';
+  } else {
+    document.getElementById('adminPwInput').value = '';
+    closeAdminLogin();
+    openAdminPanel(data.user);
+  }
+}
+
+function openAdminPanel(user) {
+  const panel = document.getElementById('adminPanel');
+  panel.classList.add('show');
+  document.body.classList.add('admin-mode');
+
+  if (user?.email) {
+    document.getElementById('adminUserEmail').textContent = user.email;
+  }
+
+  loadSupabaseProducts().then(() => loadAdminProductList());
+  applyStoredRemovals();
+  subscribeToProducts();
+}
+
+async function adminLogout() {
+  await sb.auth.signOut();
+  sb.removeAllChannels();
+
+  document.getElementById('adminPanel').classList.remove('show');
+  document.body.classList.remove('admin-mode');
+  clearInterval(adminTimer);
+}
+
+function handleAdminBgClick(e) {
+  if (e.target === document.getElementById('adminPanel')) adminLogout();
+}
+
+function switchAdminTab(name, btn) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'manage') loadAdminProductList();
+}
+
+let _sbProductsLoaded = false;
+let adminTimer = null;
+
+async function loadSupabaseProducts() {
+  if (_sbProductsLoaded) return;
+  const { data, error } = await sb
+    .from('products')
+    .select('*')
+    .eq('is_visible', true)
+    .order('created_at', { ascending: false });
+
+  if (error) { console.warn('Supabase products load error:', error.message); return; }
+  if (!data?.length) return;
+
+  const anchor = document.getElementById('customProductsAnchor');
+  data.forEach(p => {
+
+    if (document.querySelector(`[data-pid="${p.id}"]`)) return;
+    const card = buildCardElement(sbProductToLocal(p));
+    anchor.parentNode.insertBefore(card, anchor);
+    revealObserver.observe(card);
+    initCardSlider(card);
+  });
+  _sbProductsLoaded = true;
+}
+
+function sbProductToLocal(p) {
+  return {
+    id:     p.id,
+    name:   p.name,
+    tamil:  p.tamil_name || '',
+    cat:    p.category,
+    badge:  p.badge || '',
+    desc:   p.description || '',
+    images: Array.isArray(p.images) ? p.images : [],
+    specs:  Array.isArray(p.specs)  ? p.specs  : [],
+    supabase: true,
+  };
+}
+
+function subscribeToProducts() {
+  sb.channel('products-realtime')
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'products' }, (payload) => {
+      const p = sbProductToLocal(payload.new);
+      if (document.querySelector(`[data-pid="${p.id}"]`)) return;
+      const card = buildCardElement(p);
+      const anchor = document.getElementById('customProductsAnchor');
+      anchor.parentNode.insertBefore(card, anchor);
+      revealObserver.observe(card);
+      initCardSlider(card);
+      loadAdminProductList();
+    })
+    .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'products' }, (payload) => {
+      const p   = sbProductToLocal(payload.new);
+      const old = document.querySelector(`[data-pid="${p.id}"]`);
+      if (!p.is_visible || payload.new.is_visible === false) {
+        if (old) old.remove();
+      } else if (old) {
+        const newCard = buildCardElement(p);
+        old.classList.forEach(c => { if (c !== 'product-card') newCard.classList.add(c); });
+        old.parentNode.replaceChild(newCard, old);
+        revealObserver.observe(newCard);
+        initCardSlider(newCard);
+      }
+      loadAdminProductList();
+    })
+    .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'products' }, (payload) => {
+      const card = document.querySelector(`[data-pid="${payload.old.id}"]`);
+      if (card) { card.style.transition = 'opacity 0.3s'; card.style.opacity = '0'; setTimeout(() => card.remove(), 320); }
+      loadAdminProductList();
+    })
+    .subscribe((status) => {
+      const ok = status === 'SUBSCRIBED';
+      document.querySelectorAll('.sb-status').forEach(el => {
+        el.className = `sb-status ${ok ? 'connected' : 'disconnected'}`;
+        el.textContent = ok ? 'Live' : 'Reconnecting…';
+      });
+    });
+}
+
+function getHiddenBuiltins() {
+  try { return JSON.parse(localStorage.getItem('ngt_hidden') || '[]'); } catch { return []; }
+}
+function saveHiddenBuiltins(arr) { localStorage.setItem('ngt_hidden', JSON.stringify(arr)); }
+
+function applyStoredRemovals() {
+  getHiddenBuiltins().forEach(pid => {
+    const card = document.querySelector(`[data-pid="${pid}"]`);
+    if (card) card.style.display = 'none';
+  });
+}
+
+function resetHiddenBuiltins() {
+  if (!confirm('Restore all hidden original products?')) return;
+  getHiddenBuiltins().forEach(pid => {
+    const card = document.querySelector(`[data-pid="${pid}"]`);
+    if (card) card.style.display = '';
+  });
+  localStorage.removeItem('ngt_hidden');
+  loadAdminProductList();
+}
+
+let _uploadedFiles  = []; 
+let _uploadedURLs   = []; 
+
+function handleFileSelect(files) {
+  Array.from(files).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+    if (file.size > 5 * 1024 * 1024) { alert(`${file.name} is too large (max 5MB).`); return; }
+    _uploadedFiles.push(file);
+    addPreview(file);
+  });
+  document.getElementById('ap-image-files').value = '';
+}
+
+function addPreview(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'upload-preview-item';
+    const idx = _uploadedFiles.indexOf(file);
+    wrap.innerHTML = `
+      <img src="${e.target.result}" alt="preview">
+      <button class="remove-img" onclick="removePreview(this,${idx})" type="button">✕</button>`;
+    document.getElementById('uploadPreviews').appendChild(wrap);
+  };
+  reader.readAsDataURL(file);
+}
+
+function addURLPreview(url) {
+  const wrap = document.createElement('div');
+  wrap.className = 'upload-preview-item';
+  const idx = _uploadedURLs.indexOf(url);
+  wrap.innerHTML = `
+    <img src="${url}" alt="preview">
+    <button class="remove-img" onclick="removeURLPreview(this,'${url}')" type="button">✕</button>`;
+  document.getElementById('uploadPreviews').appendChild(wrap);
+}
+
+function removePreview(btn, idx) {
+  _uploadedFiles.splice(idx, 1);
+  btn.closest('.upload-preview-item').remove();
+}
+
+function removeURLPreview(btn, url) {
+  _uploadedURLs = _uploadedURLs.filter(u => u !== url);
+  btn.closest('.upload-preview-item').remove();
+}
+
+const dropZone = document.getElementById('dropZone');
+if (dropZone) {
+  ['dragenter','dragover'].forEach(evt => dropZone.addEventListener(evt, (e) => {
+    e.preventDefault(); dropZone.classList.add('drag-over');
+  }));
+  ['dragleave','drop'].forEach(evt => dropZone.addEventListener(evt, () => {
+    dropZone.classList.remove('drag-over');
+  }));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    handleFileSelect(e.dataTransfer.files);
+  });
+}
+
+async function uploadAllImages() {
+  if (!_uploadedFiles.length) return _uploadedURLs;
+  const prog = document.getElementById('uploadProgress');
+  prog.classList.add('active');
+
+  const newURLs = [];
+  for (let i = 0; i < _uploadedFiles.length; i++) {
+    const file = _uploadedFiles[i];
+    prog.textContent = `⏫ Uploading ${i + 1} of ${_uploadedFiles.length}…`;
+    const ext  = file.name.split('.').pop().toLowerCase();
+    const path = `products/${Date.now()}_${Math.random().toString(36).substr(2,8)}.${ext}`;
+    const { error } = await sb.storage.from('product-images').upload(path, file, { upsert: false, contentType: file.type });
+    if (!error) {
+      const { data: { publicUrl } } = sb.storage.from('product-images').getPublicUrl(path);
+      newURLs.push(publicUrl);
+    } else {
+      console.warn('Upload error:', error.message);
+    }
+  }
+  prog.classList.remove('active');
+  _uploadedFiles = [];
+  return [..._uploadedURLs, ...newURLs];
+}
+
+function clearUploadState() {
+  _uploadedFiles = [];
+  _uploadedURLs  = [];
+  document.getElementById('uploadPreviews').innerHTML = '';
+  document.getElementById('ap-image-files').value = '';
+}
+let _editingId = null;
+
+async function addProduct() {
+  const btn = document.getElementById('addProductBtn');
+  const name  = document.getElementById('ap-name').value.trim();
+  const tamil = document.getElementById('ap-tamil').value.trim();
+  const cat   = document.getElementById('ap-cat').value;
+  const badge = document.getElementById('ap-badge').value.trim();
+  const desc  = document.getElementById('ap-desc').value.trim();
+  const specs = [
+    { l: document.getElementById('sp1l').value.trim(), v: document.getElementById('sp1v').value.trim() },
+    { l: document.getElementById('sp2l').value.trim(), v: document.getElementById('sp2v').value.trim() },
+    { l: document.getElementById('sp3l').value.trim(), v: document.getElementById('sp3v').value.trim() },
+    { l: document.getElementById('sp4l').value.trim(), v: document.getElementById('sp4v').value.trim() },
+  ].filter(s => s.l && s.v);
+
+  if (!name || !desc) { alert('Please fill in at least Name and Description.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = _editingId ? '💾 Saving…' : '⏫ Adding…';
+
+  let imageURLs;
+  try {
+    imageURLs = await uploadAllImages();
+  } catch(e) {
+    alert('Image upload failed: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = _editingId ? '💾 Save Changes' : '➕ Add Product';
+    return;
+  }
+
+  const row = {
+    name,
+    tamil_name: tamil,
+    category: cat,
+    badge,
+    description: desc,
+    images: imageURLs,
+    specs,
+    is_visible: true,
+  };
+
+  let error;
+  if (_editingId) {
+    const isBuiltin = !document.querySelector(`[data-pid="${_editingId}"][data-supabase]`);
+    if (isBuiltin) {
+      const hidden = getHiddenBuiltins();
+      if (!hidden.includes(_editingId)) hidden.push(_editingId);
+      saveHiddenBuiltins(hidden);
+      const orig = document.querySelector(`[data-pid="${_editingId}"]`);
+      if (orig) orig.style.display = 'none';
+      const res = await sb.from('products').insert([{ ...row, builtin_pid: _editingId }]);
+      error = res.error;
+    } else {
+      const res = await sb.from('products').update(row).eq('id', _editingId);
+      error = res.error;
+    }
+  } else {
+    const res = await sb.from('products').insert([row]);
+    error = res.error;
+  }
+
+  if (error) {
+    alert('Supabase error: ' + error.message);
+  } else {
+    const s = document.getElementById('addSuccess');
+    s.textContent = _editingId ? '✅ Product updated successfully!' : '✅ Product added to Supabase!';
+    s.style.display = 'block';
+    setTimeout(() => { s.style.display = 'none'; s.textContent = '✅ Product added to Supabase!'; }, 3500);
+    clearForm();
+    cancelEdit();
+  }
+
+  btn.disabled = false;
+  btn.textContent = _editingId ? '💾 Save Changes' : '➕ Add Product';
+}
+
+function clearForm() {
+  ['ap-name','ap-tamil','ap-badge','ap-desc','sp1l','sp1v','sp2l','sp2v','sp3l','sp3v','sp4l','sp4v']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  clearUploadState();
+}
+async function deleteCard(event, pid) {
+  event.stopPropagation();
+  if (!confirm('Remove this product from the site?')) return;
+
+  const card = document.querySelector(`[data-pid="${pid}"]`);
+  if (!card) return;
+
+  if (card.dataset.supabase) {
+    const { error } = await sb.from('products').delete().eq('id', pid);
+    if (error) { alert('Delete failed: ' + error.message); return; }
+  } else {
+    const hidden = getHiddenBuiltins();
+    if (!hidden.includes(pid)) hidden.push(pid);
+    saveHiddenBuiltins(hidden);
+    card.style.display = 'none';
+    loadAdminProductList();
+  }
+}
+
+function editProduct(pid) {
+  const card = document.querySelector(`[data-pid="${pid}"]`);
+  if (!card) return;
+
+  _editingId = pid;
+  document.getElementById('ap-edit-pid').value = pid;
+
+  const fullName = card.querySelector('.card-name')?.textContent?.trim() || '';
+  const parts = fullName.split('—').map(s => s.trim());
+  document.getElementById('ap-name').value  = parts[0] || fullName;
+  document.getElementById('ap-tamil').value = parts[1] || '';
+  document.getElementById('ap-desc').value  = card.querySelector('.card-desc')?.textContent?.trim() || '';
+  document.getElementById('ap-badge').value = card.querySelector('.card-badge')?.textContent?.trim() || '';
+
+  clearUploadState();
+  const existingImgs = (card.dataset.images || '').split(',').map(s=>s.trim()).filter(Boolean);
+  existingImgs.forEach(url => { _uploadedURLs.push(url); addURLPreview(url); });
+
+  const catText = card.querySelector('.card-cat')?.textContent?.trim() || '';
+  const catMap = {
+    'Clay Tile':'clay-tile','White Tile':'white-tile','Design Tile':'design-tile',
+    'Sheet':'sheet','Timber':'wood','Wood / Timber':'wood','Accessories':'misc',
+    'Cement Sheet':'sheet','Tin Sheet':'sheet','Rope':'misc',
+    'Rope / Coir':'misc','Building Material':'misc','Hardware':'misc',
+    'Decorative Tile':'misc','Cement Product':'misc','Jally / Ventilation Tile':'design-tile'
+  };
+  document.getElementById('ap-cat').value = catMap[catText] || 'misc';
+
+  const specs = Array.from(card.querySelectorAll('.spec-item'));
+  ['sp1l','sp2l','sp3l','sp4l'].forEach((id, i) => {
+    document.getElementById(id).value = specs[i]?.querySelector('strong')?.textContent?.trim() || '';
+  });
+  ['sp1v','sp2v','sp3v','sp4v'].forEach((id, i) => {
+    const s = specs[i];
+    if (s) {
+      const lbl = s.querySelector('strong')?.textContent?.trim() || '';
+      document.getElementById(id).value = s.textContent.replace(lbl,'').trim();
+    } else { document.getElementById(id).value = ''; }
+  });
+
+  document.getElementById('editModeBanner').classList.add('show');
+  document.getElementById('addProductBtn').textContent = '💾 Save Changes';
+  switchAdminTab('add', document.querySelector('.admin-tab'));
+  document.getElementById('adminContent').scrollTop = 0;
+}
+
+function cancelEdit() {
+  _editingId = null;
+  document.getElementById('ap-edit-pid').value = '';
+  document.getElementById('editModeBanner').classList.remove('show');
+  document.getElementById('addProductBtn').textContent = '➕ Add Product';
+  clearForm();
+}
+
+function buildCardElement(p) {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.dataset.cat = p.cat;
+  card.dataset.pid = p.id;
+  if (p.supabase) card.dataset.supabase = '1';
+  card.dataset.images = p.images.join(',');
+  card.setAttribute('onclick', 'openModal(this)');
+
+  const displayName = p.tamil ? `${p.name} — ${p.tamil}` : p.name;
+  const catLabels = { 'clay-tile':'Clay Tile','white-tile':'White Tile','design-tile':'Design Tile','sheet':'Sheet','wood':'Wood / Timber','misc':'Accessories' };
+  const specsHTML = p.specs.map(s => `<div class="spec-item"><strong>${s.l}</strong>${s.v}</div>`).join('');
+  const badgeHTML = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
+  const imgsHTML  = p.images.length > 0
+    ? p.images.map((src,i) => `<img src="${src}" ${i===0?'class="active"':''} alt="${p.name}" loading="lazy">`).join('')
+    : `<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;">🏺</div>`;
+  const dotsHTML  = p.images.length > 1
+    ? `<div class="card-dots">${p.images.map((_,i)=>`<div class="card-dot${i===0?' active':''}"></div>`).join('')}</div>` : '';
+
+  card.innerHTML = `
+    <div class="card-glare"></div>
+    <button class="card-del-btn" onclick="deleteCard(event,'${p.id}')" title="Delete">✕</button>
+    <div class="card-img-wrap">${imgsHTML}${badgeHTML}${dotsHTML}</div>
+    <div class="card-body">
+      <div class="card-cat">${catLabels[p.cat] || p.cat}</div>
+      <div class="card-name">${displayName}</div>
+      <div class="card-desc">${p.desc}</div>
+      <div class="card-specs">${specsHTML}</div>
+    </div>`;
+  return card;
+}
+
+function initCardSlider(card) {
+  const imgs = card.querySelectorAll('.card-img-wrap img');
+  const dots = card.querySelectorAll('.card-dot');
+  let idx = 0;
+  if (imgs.length > 1) {
+    setInterval(() => {
+      imgs[idx].classList.remove('active');
+      if (dots[idx]) dots[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+      if (dots[idx]) dots[idx].classList.add('active');
+    }, 2600 + Math.random() * 800);
+  }
+}
+
+function loadAdminProductList() {
+  const list = document.getElementById('adminProductList');
+  if (!list) return;
+  list.innerHTML = '';
+  const hidden = getHiddenBuiltins();
+
+  document.querySelectorAll('.product-card').forEach(card => {
+    const pid = card.dataset.pid;
+    if (!pid || hidden.includes(pid) || card.style.display === 'none') return;
+    const name   = card.querySelector('.card-name')?.textContent || 'Product';
+    const cat    = card.querySelector('.card-cat')?.textContent  || '';
+    const imgSrc = card.querySelector('.card-img-wrap img')?.src  || '';
+    const isSb   = !!card.dataset.supabase;
+
+    const item = document.createElement('div');
+    item.className = 'admin-product-item';
+    item.innerHTML = `
+      <div class="admin-prod-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : '🏺'}</div>
+      <div class="admin-prod-info">
+        <div class="admin-prod-name">${name}</div>
+        <div class="admin-prod-cat">${cat} ${isSb ? '<span style="color:var(--gold);font-size:0.6rem;"> ☁ Supabase</span>' : '<span style="opacity:0.4;font-size:0.6rem;"> · Built-in</span>'}</div>
+      </div>
+      <button class="admin-prod-edit" onclick="editProduct('${pid}')">✏️ Edit</button>
+      <button class="admin-prod-del" onclick="deleteCard(event,'${pid}')">Delete</button>`;
+    list.appendChild(item);
+  });
+
+  if (!list.children.length) {
+    list.innerHTML = '<div style="text-align:center;color:var(--sand);opacity:0.4;padding:2rem;font-size:0.85rem;">No products to manage.</div>';
+  }
+}
+const REVIEWS = [
+  {
+    name: 'Siva Sankar', avatar: 'R', color: '#c1440e', stars: 5,
+    text: 'Excellent quality tiles! Got Lakshmi clay tiles for my new house in Paramakudi. Very durable and the price was reasonable. Naganath sir gave great advice on which tile suits our roof. Highly recommended!',
+    date: '2 weeks ago'
+  },
+  {
+    name: 'Sudharsan', avatar: 'M', color: '#7c4a1e', stars: 5,
+    text: 'Best timber shop in Ramanathapuram district. Quality Casuarina wood at fair price. Delivered on time too. My contractor confirmed the quality is excellent. Will buy again for my next project.',
+    date: '1 month ago'
+  },
+  {
+    name: 'Karthikeyan p', avatar: 'K', color: '#3a5c3a', stars: 5,
+    text: 'Bought Visaka cement sheets for my factory shed. Perfect quality ISI certified. The staff are very helpful and knowledgeable about all roofing materials. Very honest shop — no overpricing.',
+    date: '3 weeks ago'
+  },
+  {
+    name: 'Gowtham', avatar: 'A', color: '#5a3512', stars: 5,
+    text: 'Wonderful experience! Got clay tiles and coir rope. Very honest shop with 30+ years of trust. My family has been buying from here for generations — consistent quality every single time.',
+    date: '1 month ago'
+  },
+  {
+    name: 'Logesh', avatar: 'S', color: '#c1440e', stars: 5,
+    text: 'Great variety of products. Petal Jally tiles for my house front elevation look amazing. Quick delivery and superb customer service. Will definitely come back for my next construction project.',
+    date: '2 months ago'
+  },
+  {
+    name: 'Harish', avatar: 'P', color: '#7c4a1e', stars: 5,
+    text: 'Good quality building materials at competitive prices. Naganath timber is a reliable source for all construction needs in Paramakudi. Trusted by builders for decades — and now I know why!',
+    date: '2 months ago'
+  }
+];
+
+let reviewIdx = 0;
+let reviewAutoTimer = null;
+
+function buildReviewDots() {
+  const dots = document.getElementById('reviewNavDots');
+  if (!dots) return;
+  dots.innerHTML = REVIEWS.map((_, i) =>
+    `<div class="review-nav-dot${i === reviewIdx ? ' active' : ''}" onclick="showReview(${i})"></div>`
+  ).join('');
+}
+
+function showReview(idx) {
+  reviewIdx = idx;
+  const r = REVIEWS[idx];
+  document.getElementById('reviewAvatar').textContent = r.avatar;
+  document.getElementById('reviewAvatar').style.background = r.color;
+  document.getElementById('reviewName').textContent = r.name;
+  document.getElementById('reviewDateEl').textContent = r.date;
+  document.getElementById('reviewStars').textContent = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+  document.getElementById('reviewText').textContent = r.text;
+  buildReviewDots();
+}
+
+function openReviewPopup() {
+  const popup = document.getElementById('reviewPopup');
+  if (!popup) return;
+  reviewIdx = Math.floor(Math.random() * REVIEWS.length);
+  showReview(reviewIdx);
+  popup.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeReviewPopup() {
+  const popup = document.getElementById('reviewPopup');
+  if (popup) {
+    popup.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  clearInterval(reviewAutoTimer);
+  reviewAutoTimer = setInterval(() => {
+    const pdOpen    = document.getElementById('pdModal')?.classList.contains('show');
+    const adminOpen = document.getElementById('adminPanel')?.classList.contains('show');
+    if (!pdOpen && !adminOpen) openReviewPopup();
+  }, 120000);
+}
+
+document.getElementById('reviewPopup').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('reviewPopup')) closeReviewPopup();
+});
+
+setTimeout(() => {
+  const pdOpen    = document.getElementById('pdModal')?.classList.contains('show');
+  const adminOpen = document.getElementById('adminPanel')?.classList.contains('show');
+  if (!pdOpen && !adminOpen) openReviewPopup();
+}, 2000);
+
+window.addEventListener('DOMContentLoaded', async () => {
+  applyStoredRemovals();
+
+  loadSupabaseProducts();
+
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    openAdminPanel(session.user);
+  }
+});
+</script>
+</body>
+</html>
