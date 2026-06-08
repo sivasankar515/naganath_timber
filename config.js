@@ -1,2 +1,0 @@
-window.SB_URL = 'https://rzlvycwpqgxjxhsmfnoy.supabase.co';
-window.SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6bHZ5Y3dwcWd4anhoc21mbm95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTU4MDksImV4cCI6MjA5NjI5MTgwOX0.VVoLTOsfHi6PWVOIfxRj2VZiKT9Wr7KCf7S4ukaNS8k';
