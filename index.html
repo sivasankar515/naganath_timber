@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 :root {
@@ -321,9 +322,6 @@ body::before {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ════════════════════════════════════════
@@ -1027,14 +1025,13 @@ footer {
 
 /* ── Card-level share button ── */
 .card-share-btn {
-  position:absolute; bottom:10px; right:10px; z-index:11;
+  position:absolute; top:10px; left:10px; z-index:11;
   width:28px; height:28px; border-radius:50%;
-  background:rgba(18,11,4,0.6); border:1px solid rgba(212,164,76,0.45);
+  background:rgba(212,164,76,0.15); border:1px solid rgba(212,164,76,0.35);
   color:var(--gold); cursor:pointer;
   align-items:center; justify-content:center;
   display:none;
   transition:background 0.2s, transform 0.2s;
-  backdrop-filter:blur(4px);
 }
 .card-share-btn:hover { background:rgba(212,164,76,0.35); transform:scale(1.1); }
 .product-card:hover .card-share-btn { display:flex; }
@@ -2081,15 +2078,699 @@ footer {
 <section class="products-section">
 <div class="products-grid" id="productGrid">
 
-<!-- Products loaded from Supabase -->
-<div id="productLoadingState" style="grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4rem 2rem;gap:1rem;">
-  <div style="width:44px;height:44px;border:3px solid rgba(212,164,76,0.15);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
-  <div style="font-size:0.8rem;letter-spacing:2px;color:var(--sand);opacity:0.45;text-transform:uppercase;">Loading Products…</div>
+<!-- ── CLAY TILES ── -->
+<div class="product-card" data-cat="clay-tile" data-pid="p1" data-images="image/Lakshmi front.jpg,image/Lakshmi back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p1')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Lakshmi front.jpg" class="active" alt="Lakshmi Tile">
+    <img src="image/Lakshmi back.jpg" alt="Lakshmi Tile Back">
+    <span class="card-badge">Kerala</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">Lakshmi Tile Work — இரட்டை யானை</div>
+    <div class="card-desc">Premium handcrafted Kerala clay tiles, renowned for durability &amp; traditional elegance.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Kerala</div>
+      <div class="spec-item"><strong>Type</strong>Double Elephant</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
 </div>
-<div id="productEmptyState" style="grid-column:1/-1;display:none;text-align:center;padding:4rem 2rem;">
-  <div style="font-size:3rem;margin-bottom:1rem;">🏺</div>
-  <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);margin-bottom:0.5rem;">No products yet</div>
-  <div style="font-size:0.85rem;color:var(--sand);opacity:0.55;">Products added through the admin panel will appear here.</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p2" data-images="image/bt front.jpg,image/bt back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p2')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/bt front.jpg" class="active" alt="Bangalore Tile">
+    <img src="image/bt back.jpg" alt="Bangalore Tile Back">
+    <span class="card-badge">Bangalore</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Bangalore Tiles Factory Polish</div>
+    <div class="card-desc">Premium polish tiles with glossy finish &amp; superior durability from Bangalore Factory.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Bangalore</div>
+      <div class="spec-item"><strong>Finish</strong>Factory Polish</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p3" data-images="image/Tbt front.jpg,image/Tbt back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p3')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Tbt front.jpg" class="active" alt="TBT Tile">
+    <img src="image/Tbt back.jpg" alt="TBT Tile Back">
+    <span class="card-badge">TBT</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Terra Bricks &amp; Tiles (TBT)</div>
+    <div class="card-desc">Premium polish enhancing shine and longevity of bricks and tiles.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>TBT</div>
+      <div class="spec-item"><strong>Type</strong>Polish Clay</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p4" data-images="image/Sastha front.jpg,image/Sastha back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p4')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Sastha front.jpg" class="active" alt="Sree Sastha Tile">
+    <img src="image/Sastha back.jpg" alt="Sree Sastha Back">
+    <span class="card-badge">Sastha</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Polish Clay Tile</div>
+    <div class="card-name">Sree Sastha Polish Clay Tiles</div>
+    <div class="card-desc">High-quality polish tiles maintaining shine and durability over decades.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Sree Sastha</div>
+      <div class="spec-item"><strong>Origin</strong>Mallur</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>First Quality</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p5" data-images="image/Swathi krishna front.jpg,image/Swathi krishna back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p5')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Swathi krishna front.jpg" class="active" alt="Swathi Krishna Tile">
+    <img src="image/Swathi krishna back.jpg" alt="Swathi Krishna Back">
+    <span class="card-badge">Budget</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile – Second Quality</div>
+    <div class="card-name">Swathi Krishna — இரட்டை யானை</div>
+    <div class="card-desc">Budget-friendly second quality tiles suitable for varied construction applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Grade</strong>Second Quality</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Budget</strong>Economy</div>
+      <div class="spec-item"><strong>Use</strong>General Roofing</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p6" data-images="image/Abr front.jpg,image/Abr back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p6')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Abr front.jpg" class="active" alt="APR Tile">
+    <img src="image/Abr back.jpg" alt="APR Tile Back">
+    <span class="card-badge">Nagercoil</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">APR Clay Tile</div>
+    <div class="card-desc">Premium clay tiles from Nagercoil, known for strength and aesthetic appeal.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Origin</strong>Nagercoil</div>
+      <div class="spec-item"><strong>Brand</strong>APR</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p7" data-images="image/Ridge mukatu clay tile.jpg,image/Ride top view.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p7')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Ridge mukatu clay tile.jpg" class="active" alt="Ridge Tile">
+    <img src="image/Ride top view.jpg" alt="Ridge Top View">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">முகட்டு ஓடு — Ridge Clay Tile</div>
+    <div class="card-desc">Durable weather-resistant ridge tiles for roofing protection and aesthetics.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Ridge</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Use</strong>Roof Ridge</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p8" data-images="image/Roof tile.jpg,image/Roof tile 1.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p8')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Roof tile.jpg" class="active" alt="Roof Tile">
+    <img src="image/Roof tile 1.jpg" alt="Roof Tile 2">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">கூரை ஓடு — Roof Clay Tile</div>
+    <div class="card-desc">High-quality roof clay tiles with durability, weather resistance, and traditional aesthetics.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Roofing</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.7/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p9" data-images="image/Smoke clay tile.jpg,image/Smokeclaytiletop.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p9')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Smoke clay tile.jpg" class="active" alt="Smoke Tile">
+    <img src="image/Smokeclaytiletop.jpg" alt="Smoke Tile Top">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Clay Tile</div>
+    <div class="card-name">புகை ஓடு — Smoke Clay Tile</div>
+    <div class="card-desc">Premium quality smoke clay tiles with traditional aesthetic for roofing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Smoke Vent</div>
+      <div class="spec-item"><strong>Material</strong>Clay</div>
+      <div class="spec-item"><strong>Use</strong>Ventilation</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="clay-tile" data-pid="p10" data-images="image/Glass tile front.jpg,image/Glass tile back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p10')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Glass tile front.jpg" class="active" alt="Glass Tile">
+    <img src="image/Glass tile back.jpg" alt="Glass Tile Back">
+    <span class="card-badge">Light</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Glass Clay Tile</div>
+    <div class="card-name">கண்ணாடி ஓடு — Glass Clay Tile</div>
+    <div class="card-desc">Elegant glass clay tiles allowing natural light while maintaining strength.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Transparent</div>
+      <div class="spec-item"><strong>Feature</strong>Natural Light</div>
+      <div class="spec-item"><strong>Use</strong>Roof Accent</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHITE TILES ── -->
+<div class="product-card" data-cat="white-tile" data-pid="p11" data-images="image/Pr front.jpg,image/Pr whitetile logo.jpg,image/Pr line.jpg,image/Pr back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p11')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Pr front.jpg" class="active" alt="PR White Tile">
+    <img src="image/Pr whitetile logo.jpg" alt="PR Logo">
+    <img src="image/Pr line.jpg" alt="PR Line">
+    <img src="image/Pr back.jpg" alt="PR Back">
+    <span class="card-badge">Energy Saving</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">White Cooling Tile</div>
+    <div class="card-name">PR White Cooling Tile</div>
+    <div class="card-desc">Energy-efficient white tiles designed to reduce heat and maintain indoor comfort.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>PR</div>
+      <div class="spec-item"><strong>Feature</strong>Heat Reduction</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="white-tile" data-pid="p12" data-images="image/Abr white front.jpg,image/Apr white tile logo.jpg,image/Abr white back.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p12')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Abr white front.jpg" class="active" alt="APR White Tile">
+    <img src="image/Apr white tile logo.jpg" alt="APR Logo">
+    <img src="image/Abr white back.jpg" alt="APR White Back">
+    <span class="card-badge">Cool</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">White Cooling Tile</div>
+    <div class="card-name">APR White Cooling Tile</div>
+    <div class="card-desc">High-quality cool white tiles keeping spaces fresh and stylish.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>APR</div>
+      <div class="spec-item"><strong>Feature</strong>Cooling</div>
+      <div class="spec-item"><strong>Coverage</strong>~1.4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── DESIGN TILES ── -->
+<div class="product-card" data-cat="design-tile" data-pid="p13" data-images="image/Triple adr.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p13')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Triple adr.jpg" class="active" alt="Triple ADR">
+    <span class="card-badge">Classic</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Trible ADR Classic</div>
+    <div class="card-desc">High-quality Trible ADR Classic tiles designed for strength and durability.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>ADR</div>
+      <div class="spec-item"><strong>Type</strong>Design</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Classic</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p14" data-images="image/Master bamboo.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p14')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Master bamboo.jpg" class="active" alt="Master Bamboo Tile">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Master Bamboo</div>
+    <div class="card-desc">Eco-friendly stylish Master Bamboo tiles offering natural aesthetic.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Master</div>
+      <div class="spec-item"><strong>Style</strong>Bamboo Pattern</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p15" data-images="image/Portiques.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p15')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Portiques.jpg" class="active" alt="Portiques Tile">
+    <span class="card-badge">Design</span>
+    <div class="card-dots"><div class="card-dot active"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Design Tile</div>
+    <div class="card-name">Portiques</div>
+    <div class="card-desc">Stylish Portiques tiles offering elegant design for traditional spaces.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Decorative</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Use</strong>Facade</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="design-tile" data-pid="p16" data-images="image/Petaljally.jpg,image/Petal full.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p16')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Petaljally.jpg" class="active" alt="Petal Jally">
+    <img src="image/Petal full.jpg" alt="Petal Full">
+    <span class="card-badge">Ventilation</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Jally / Ventilation Tile</div>
+    <div class="card-name">Petal Jally Tile</div>
+    <div class="card-desc">Stylish Petal Jally tiles enhancing ventilation and aesthetics in traditional spaces.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Jally / Lattice</div>
+      <div class="spec-item"><strong>Feature</strong>Ventilation</div>
+      <div class="spec-item"><strong>Coverage</strong>~4/sq.ft</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SHEETS ── -->
+<div class="product-card" data-cat="sheet" data-pid="p17" data-images="image/Visaka cementsheet.jpg,image/Visaka logo.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p17')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Visaka cementsheet.jpg" class="active" alt="Visaka Sheet">
+    <img src="image/Visaka logo.jpg" alt="Visaka Logo">
+    <span class="card-badge">Cement</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Sheet</div>
+    <div class="card-name">Visaka Cement Sheet</div>
+    <div class="card-desc">Durable high-quality Visaka cement sheets for construction needs.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Visaka</div>
+      <div class="spec-item"><strong>Sizes</strong>6mm, 8mm, 10mm</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Cladding</div>
+      <div class="spec-item"><strong>Grade</strong>ISI</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="sheet" data-pid="p18" data-images="image/Tin_sheet.jpg,image/Tin_sheet_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p18')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Tin_sheet.jpg" class="active" alt="Tin Sheet">
+    <img src="image/Tin_sheet_2.jpg" alt="Tin Sheet Design">
+    <span class="card-badge">Metal</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Tin Sheet</div>
+    <div class="card-name">தகரம் — Tin Roofing Sheet</div>
+    <div class="card-desc">Weather-resistant tin sheets ideal for roofing and fencing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>6ft, 8ft, 10ft</div>
+      <div class="spec-item"><strong>Material</strong>Galvanised</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Fencing</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="sheet" data-pid="p19" data-images="image/Vasar group.jpg,image/Vasar front.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p19')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Vasar group.jpg" class="active" alt="Vasar Sheet">
+    <img src="image/Vasar front.jpg" alt="Vasar Front">
+    <span class="card-badge">Vasar</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Sheet</div>
+    <div class="card-name">வாசர் — Vasar Cement Sheet</div>
+    <div class="card-desc">Durable high-quality Vasar cement sheets for roofing applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Brand</strong>Vasar</div>
+      <div class="spec-item"><strong>Sizes</strong>6mm, 8mm, 10mm</div>
+      <div class="spec-item"><strong>Use</strong>Roofing</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WOOD / TIMBER ── -->
+<div class="product-card" data-cat="wood" data-pid="p20" data-images="image/Ripper1.jpg,image/Ripper 2.jpg,image/Ripper3.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p20')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Ripper1.jpg" class="active" alt="Ripper Wood">
+    <img src="image/Ripper 2.jpg" alt="Ripper Sizes">
+    <img src="image/Ripper3.jpg" alt="Ripper Sizes 2">
+    <span class="card-badge">Timber</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Timber</div>
+    <div class="card-name">ரிப்பர் — Ripper Wood</div>
+    <div class="card-desc">High-quality ripper wood for construction and furniture in various sizes.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>3,4,5,6,7,8,9</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Treatment</strong>Seasoned</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p21" data-images="image/Whip_wood.jpg,image/Whip_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p21')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Whip_wood.jpg" class="active" alt="Whip Wood">
+    <img src="image/Whip_wood_2.jpg" alt="Whip Wood Sizes">
+    <span class="card-badge">Casuarina</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Wood</div>
+    <div class="card-name">சவுக்கு மரம் — Whip Wood</div>
+    <div class="card-desc">Strong durable Casuarina wood for construction in multiple sizes.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Casuarina</div>
+      <div class="spec-item"><strong>Sizes</strong>Multiple</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p22" data-images="image/Coconut_wood.jpg,image/Coconut_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p22')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Coconut_wood.jpg" class="active" alt="Coconut Wood">
+    <img src="image/Coconut_wood_2.jpg" alt="Coconut Wood 2">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Wood</div>
+    <div class="card-name">தேங்காய் மரம் — Coconut Wood</div>
+    <div class="card-desc">Eco-friendly coconut wood suitable for traditional construction and crafts.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Coconut</div>
+      <div class="spec-item"><strong>Use</strong>Construction</div>
+      <div class="spec-item"><strong>Eco</strong>Sustainable</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="wood" data-pid="p23" data-images="image/Pine_wood.jpg,image/Pine_wood_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p23')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Pine_wood.jpg" class="active" alt="Pine Wood">
+    <img src="image/Pine_wood_2.jpg" alt="Pine Wood 2">
+    <span class="card-badge">Pine</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Timber</div>
+    <div class="card-name">Pine Wood</div>
+    <div class="card-desc">Smooth premium pine wood for furniture, framing, and interior finish work.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Pine</div>
+      <div class="spec-item"><strong>Finish</strong>Smooth</div>
+      <div class="spec-item"><strong>Use</strong>Furniture/Frame</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ACCESSORIES / MISC ── -->
+<div class="product-card" data-cat="misc" data-pid="p24" data-images="image/Lime.jpg,image/Lime_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p24')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Lime.jpg" class="active" alt="Lime">
+    <img src="image/Lime_2.jpg" alt="Lime 2">
+    <span class="card-badge">Essential</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Building Material</div>
+    <div class="card-name">சுண்ணாம்பு — Lime</div>
+    <div class="card-desc">High-quality construction lime for plastering, whitewashing, and building.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Building Lime</div>
+      <div class="spec-item"><strong>Use</strong>Plastering</div>
+      <div class="spec-item"><strong>Purity</strong>High</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p25" data-images="image/Nails.jpg,image/Nails_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p25')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Nails.jpg" class="active" alt="Nails">
+    <img src="image/Nails_2.jpg" alt="Nails 2">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Hardware</div>
+    <div class="card-name">ஆணி — Construction Nails</div>
+    <div class="card-desc">Heavy-duty construction nails in multiple sizes for roofing and carpentry.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>Multiple</div>
+      <div class="spec-item"><strong>Material</strong>Steel</div>
+      <div class="spec-item"><strong>Use</strong>Roofing/Carpentry</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p26" data-images="image/God_image_tile.jpg,image/God_image_tile_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p26')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/God_image_tile.jpg" class="active" alt="God Image Tile">
+    <img src="image/God_image_tile_2.jpg" alt="God Image Design">
+    <span class="card-badge">Temple</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Decorative Tile</div>
+    <div class="card-name">God Image Tile</div>
+    <div class="card-desc">Beautifully designed god image tiles for temples, pooja rooms, and décor.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Decorative</div>
+      <div class="spec-item"><strong>Use</strong>Temple/Pooja</div>
+      <div class="spec-item"><strong>Designs</strong>Multiple</div>
+      <div class="spec-item"><strong>Grade</strong>Premium</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p27" data-images="image/Group.coir.jpg,image/5 coir.jpg,image/10 coir.jpg,image/Coir bundle side.jpg,image/Coir bundle top.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p27')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Group.coir.jpg" class="active" alt="Coir Rope">
+    <img src="image/5 coir.jpg" alt="5mm Coir">
+    <img src="image/10 coir.jpg" alt="10mm Coir">
+    <img src="image/Coir bundle side.jpg" alt="Bundle Side">
+    <img src="image/Coir bundle top.jpg" alt="Bundle Top">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Rope / Coir</div>
+    <div class="card-name">கயிறு — Coir Rope</div>
+    <div class="card-desc">Strong durable coir rope for construction, packaging, and household use.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>5mm, 10mm</div>
+      <div class="spec-item"><strong>Material</strong>Natural Coir</div>
+      <div class="spec-item"><strong>Use</strong>Multi-purpose</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p28" data-images="image/Manikocham group.jpg,image/Manikocham small.jpg,image/Manikocham big.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p28')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Manikocham group.jpg" class="active" alt="Manikocham">
+    <img src="image/Manikocham small.jpg" alt="Manikocham Small">
+    <img src="image/Manikocham big.jpg" alt="Manikocham Big">
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Rope</div>
+    <div class="card-name">மணிக்கொச்சம்</div>
+    <div class="card-desc">Strong and durable rope for construction, packaging, and household applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>Small, Large</div>
+      <div class="spec-item"><strong>Material</strong>Natural Fibre</div>
+      <div class="spec-item"><strong>Use</strong>Multi-purpose</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p29" data-images="image/Palai_palm_leaf.jpg,image/Palai_palm_leaf_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p29')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Palai_palm_leaf.jpg" class="active" alt="Palm Leaf">
+    <img src="image/Palai_palm_leaf_2.jpg" alt="Palm Leaf Roofing">
+    <span class="card-badge">Eco</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Natural Roofing</div>
+    <div class="card-name">பாலை — Palm Leaf</div>
+    <div class="card-desc">Natural eco-friendly palm leaves for traditional roofing and sustainable applications.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Type</strong>Palm Leaf</div>
+      <div class="spec-item"><strong>Material</strong>Natural</div>
+      <div class="spec-item"><strong>Use</strong>Traditional Roofing</div>
+      <div class="spec-item"><strong>Grade</strong>Eco</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-card" data-cat="misc" data-pid="p30" data-images="image/Cement_pillar.jpg,image/Cement_pillar_2.jpg" onclick="openModal(this)">
+  <div class="card-glare"></div>
+  <button class="card-del-btn" onclick="deleteCard(event,'p30')" title="Delete">✕</button>
+  <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+  <div class="card-img-wrap">
+    <img src="image/Cement_pillar.jpg" class="active" alt="Cement Pillar">
+    <img src="image/Cement_pillar_2.jpg" alt="Cement Pillar Design">
+    <span class="card-badge">Structural</span>
+    <div class="card-dots"><div class="card-dot active"></div><div class="card-dot"></div></div>
+  </div>
+  <div class="card-body">
+    <div class="card-cat">Cement Product</div>
+    <div class="card-name">சிமெண்ட் தூண் — Cement Pillar</div>
+    <div class="card-desc">Strong durable cement pillars for construction and fencing.</div>
+    <div class="card-specs">
+      <div class="spec-item"><strong>Sizes</strong>6ft, 8ft, 10ft</div>
+      <div class="spec-item"><strong>Material</strong>RCC</div>
+      <div class="spec-item"><strong>Use</strong>Fencing/Construction</div>
+      <div class="spec-item"><strong>Grade</strong>Standard</div>
+    </div>
+  </div>
 </div>
 
 <!-- Custom products anchor -->
@@ -2378,7 +3059,7 @@ footer {
     <div class="footer-info">
       © 2025 S.Naganath Timber · Since 1990 · Paramakudi, Ramanathapuram District<br>
       <a href="tel:+919443465513">+91 94434 65513</a> · <a href="mailto:naganathtimber@gmail.com">naganathtimber@gmail.com</a><br>
-      All Rights Reserved.
+      All Rights Reserved · Made with ♥ in Tamil Nadu
     </div>
   </div>
   <div class="footer-admin-trigger" id="footerAdminTrigger">·</div>
@@ -2460,7 +3141,7 @@ footer {
       placeholder="Password"
       onkeydown="if(event.key==='Enter')doAdminLogin()"
       autocomplete="current-password">
-    <button class="admin-login-btn" id="adminLoginBtn" onclick="doAdminLogin()">Login</button>
+    <button class="admin-login-btn" id="adminLoginBtn" onclick="doAdminLogin()">Login with Supabase</button>
     <button class="admin-login-cancel" onclick="closeAdminLogin()">Cancel</button>
   </div>
 </div>
@@ -2582,14 +3263,45 @@ footer {
         <div class="admin-product-list" id="adminProductList"></div>
       </div>
 
+      <!-- SETTINGS -->
+      <div class="admin-tab-pane" id="tab-settings">
+        <div class="admin-info-box">
+          <h4>🔑 Supabase Auth — Change Admin Password</h4>
+          <p>
+            1. Go to your <strong style="color:var(--gold2);">Supabase Dashboard</strong> → Authentication → Users<br>
+            2. Find your admin email, click the three-dot menu → "Send Password Reset"<br>
+            3. Check your email and follow the link to set a new password.<br>
+            4. You can also directly edit the user password from the dashboard.
+          </p>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>📦 Supabase Storage — Uploaded Images</h4>
+          <p>
+            All product images are stored in the <code>product-images</code> bucket.<br>
+            Go to Supabase → Storage → product-images to view/delete files.
+          </p>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>🔁 Real-time Sync</h4>
+          <p>Products are synced in real-time across all browsers. When you add, edit, or delete a product, every visitor sees the change within seconds without refreshing.</p>
+          <div style="margin-top:0.6rem;">Connection: <span class="sb-status connected" id="sbStatusSettings">Live</span></div>
+        </div>
+        <div class="admin-info-box" style="margin-top:1rem;">
+          <h4>🗑️ Reset / Restore Visibility</h4>
+          <p>Hidden built-in products are stored locally. Click to restore them to visible.</p>
+          <button onclick="resetHiddenBuiltins()" style="margin-top:0.8rem;padding:0.5rem 1.2rem;background:rgba(193,68,14,0.2);border:1px solid rgba(193,68,14,0.4);color:#e05012;font-size:0.72rem;letter-spacing:1px;cursor:pointer;border-radius:3px;">Restore Hidden Originals</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 <script>
 'use strict';
 
-const SUPABASE_URL      = '__SUPABASE_URL__';
-const SUPABASE_ANON_KEY = '__SUPABASE_KEY__';
+const SUPABASE_URL      = 'https://rzlvycwpqgxjxhsmfnoy.supabase.co';       // e.g. https://abcdefg.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6bHZ5Y3dwcWd4anhoc21mbm95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTU4MDksImV4cCI6MjA5NjI5MTgwOX0.VVoLTOsfHi6PWVOIfxRj2VZiKT9Wr7KCf7S4ukaNS8k';  // starts with "eyJ..."
+
 /* ── Init Supabase client ── */
 const { createClient } = window.supabase;
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -2608,12 +3320,13 @@ const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
 })();
 
-
+/* ── Navbar scroll effect ── */
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
+/* ── Mobile menu ── */
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   const btn  = document.getElementById('hamburger');
@@ -2683,10 +3396,24 @@ document.addEventListener('mousemove', (e) => {
     glare.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,240,200,0.13), transparent 65%)`;
   }
 });
-document.getElementById('productGrid').addEventListener('mouseleave', (e) => {
-  const card = e.target.closest('.product-card');
-  if (card) card.style.transform = '';
-}, true);
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+document.querySelectorAll('.product-card').forEach(card => {
+  const imgs = card.querySelectorAll('.card-img-wrap img');
+  const dots = card.querySelectorAll('.card-dot');
+  let idx = 0;
+  if (imgs.length > 1) {
+    setInterval(() => {
+      imgs[idx].classList.remove('active');
+      if (dots[idx]) dots[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+      if (dots[idx]) dots[idx].classList.add('active');
+    }, 2600 + Math.random() * 800);
+  }
+});
 
 function filterCat(cat, btn) {
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
@@ -2767,6 +3494,9 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight' && pdIdx < pdImgs.length - 1) pdJump(pdIdx + 1);
 });
 
+/* ════════════════════════════════════════
+   PRODUCT SHARE
+════════════════════════════════════════ */
 let _shareOpen = false;
 
 function toggleSharePanel(e) {
@@ -2779,6 +3509,7 @@ function toggleSharePanel(e) {
   if (nativeBtn) nativeBtn.style.display = navigator.share ? 'flex' : 'none';
 }
 
+// Close share dropdown on outside click
 document.addEventListener('click', (e) => {
   if (!_shareOpen) return;
   const dropdown = document.getElementById('shareDropdown');
@@ -2840,6 +3571,7 @@ async function triggerNativeShare() {
   closeSharePanel();
 }
 
+// Card-level quick share (hover button on each card)
 function shareCardProduct(e, card) {
   e.stopPropagation();
   const name = card.querySelector('.card-name')?.textContent?.trim() || 'Product';
@@ -2890,9 +3622,6 @@ function openAdminLogin() {
 function closeAdminLogin() {
   document.getElementById('adminLoginBg').classList.remove('show');
   document.getElementById('adminLoginError').style.display = 'none';
-  /* Reset button so it works on every re-login */
-  const btn = document.getElementById('adminLoginBtn');
-  if (btn) { btn.disabled = false; btn.textContent = 'Login'; }
 }
 
 async function doAdminLogin() {
@@ -2932,6 +3661,7 @@ function openAdminPanel(user) {
   }
 
   loadSupabaseProducts().then(() => loadAdminProductList());
+  applyStoredRemovals();
   subscribeToProducts();
   startAdminIdleTimer();   // ← 10-min auto-logout
 }
@@ -2940,7 +3670,6 @@ async function adminLogout(auto = false) {
   stopAdminIdleTimer();
   await sb.auth.signOut();
   sb.removeAllChannels();
-  _sbProductsLoaded = false;   // ← reset so products reload on next login
 
   document.getElementById('adminPanel').classList.remove('show');
   document.body.classList.remove('admin-mode');
@@ -2962,6 +3691,11 @@ function switchAdminTab(name, btn) {
 
 let _sbProductsLoaded = false;
 
+/* ════════════════════════════════════════
+   ADMIN AUTO-LOGOUT — 10-MINUTE IDLE
+   Shows 60-second warning at 9 min,
+   then signs out via Supabase at 10 min.
+════════════════════════════════════════ */
 const ADMIN_IDLE_MS = 10 * 60 * 1000;  // 10 minutes total
 const ADMIN_WARN_MS =  9 * 60 * 1000;  // show warning at 9 minutes
 const ADMIN_WARN_DURATION = 60;         // warning countdown seconds
@@ -3013,6 +3747,7 @@ function _scheduleTimers() {
   _idleTimer = setTimeout(() => adminLogout(true), ADMIN_IDLE_MS);
 }
 
+/* ── Header clock (always visible) ── */
 function _startClock() {
   clearInterval(_clockIntv);
   _renderClock();
@@ -3082,33 +3817,18 @@ function showAutoLogoutToast() {
 
 async function loadSupabaseProducts() {
   if (_sbProductsLoaded) return;
-
-  const loadingEl = document.getElementById('productLoadingState');
-  const emptyEl   = document.getElementById('productEmptyState');
-  if (loadingEl) loadingEl.style.display = 'flex';
-  if (emptyEl)   emptyEl.style.display   = 'none';
-
   const { data, error } = await sb
     .from('products')
     .select('*')
     .eq('is_visible', true)
     .order('created_at', { ascending: false });
 
-  if (loadingEl) loadingEl.style.display = 'none';
-
-  if (error) {
-    console.warn('Supabase products load error:', error.message);
-    if (emptyEl) emptyEl.style.display = 'block';
-    return;
-  }
-
-  if (!data?.length) {
-    if (emptyEl) emptyEl.style.display = 'block';
-    return;
-  }
+  if (error) { console.warn('Supabase products load error:', error.message); return; }
+  if (!data?.length) return;
 
   const anchor = document.getElementById('customProductsAnchor');
   data.forEach(p => {
+
     if (document.querySelector(`[data-pid="${p.id}"]`)) return;
     const card = buildCardElement(sbProductToLocal(p));
     anchor.parentNode.insertBefore(card, anchor);
@@ -3170,6 +3890,28 @@ function subscribeToProducts() {
         el.textContent = ok ? 'Live' : 'Reconnecting…';
       });
     });
+}
+
+function getHiddenBuiltins() {
+  try { return JSON.parse(localStorage.getItem('ngt_hidden') || '[]'); } catch { return []; }
+}
+function saveHiddenBuiltins(arr) { localStorage.setItem('ngt_hidden', JSON.stringify(arr)); }
+
+function applyStoredRemovals() {
+  getHiddenBuiltins().forEach(pid => {
+    const card = document.querySelector(`[data-pid="${pid}"]`);
+    if (card) card.style.display = 'none';
+  });
+}
+
+function resetHiddenBuiltins() {
+  if (!confirm('Restore all hidden original products?')) return;
+  getHiddenBuiltins().forEach(pid => {
+    const card = document.querySelector(`[data-pid="${pid}"]`);
+    if (card) card.style.display = '';
+  });
+  localStorage.removeItem('ngt_hidden');
+  loadAdminProductList();
 }
 
 let _uploadedFiles  = []; 
@@ -3307,8 +4049,19 @@ async function addProduct() {
 
   let error;
   if (_editingId) {
-    const res = await sb.from('products').update(row).eq('id', _editingId);
-    error = res.error;
+    const isBuiltin = !document.querySelector(`[data-pid="${_editingId}"][data-supabase]`);
+    if (isBuiltin) {
+      const hidden = getHiddenBuiltins();
+      if (!hidden.includes(_editingId)) hidden.push(_editingId);
+      saveHiddenBuiltins(hidden);
+      const orig = document.querySelector(`[data-pid="${_editingId}"]`);
+      if (orig) orig.style.display = 'none';
+      const res = await sb.from('products').insert([{ ...row, builtin_pid: _editingId }]);
+      error = res.error;
+    } else {
+      const res = await sb.from('products').update(row).eq('id', _editingId);
+      error = res.error;
+    }
   } else {
     const res = await sb.from('products').insert([row]);
     error = res.error;
@@ -3341,8 +4094,16 @@ async function deleteCard(event, pid) {
   const card = document.querySelector(`[data-pid="${pid}"]`);
   if (!card) return;
 
-  const { error } = await sb.from('products').delete().eq('id', pid);
-  if (error) { alert('Delete failed: ' + error.message); return; }
+  if (card.dataset.supabase) {
+    const { error } = await sb.from('products').delete().eq('id', pid);
+    if (error) { alert('Delete failed: ' + error.message); return; }
+  } else {
+    const hidden = getHiddenBuiltins();
+    if (!hidden.includes(pid)) hidden.push(pid);
+    saveHiddenBuiltins(hidden);
+    card.style.display = 'none';
+    loadAdminProductList();
+  }
 }
 
 function editProduct(pid) {
@@ -3421,12 +4182,10 @@ function buildCardElement(p) {
   card.innerHTML = `
     <div class="card-glare"></div>
     <button class="card-del-btn" onclick="deleteCard(event,'${p.id}')" title="Delete">✕</button>
-    <div class="card-img-wrap">
-      ${imgsHTML}${badgeHTML}${dotsHTML}
-      <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-      </button>
-    </div>
+    <button class="card-share-btn" onclick="shareCardProduct(event,this.closest('.product-card'))" title="Share product" aria-label="Share product">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    </button>
+    <div class="card-img-wrap">${imgsHTML}${badgeHTML}${dotsHTML}</div>
     <div class="card-body">
       <div class="card-cat">${catLabels[p.cat] || p.cat}</div>
       <div class="card-name">${displayName}</div>
@@ -3455,13 +4214,15 @@ function loadAdminProductList() {
   const list = document.getElementById('adminProductList');
   if (!list) return;
   list.innerHTML = '';
+  const hidden = getHiddenBuiltins();
 
-  document.querySelectorAll('.product-card[data-supabase]').forEach(card => {
-    const pid    = card.dataset.pid;
-    if (!pid) return;
+  document.querySelectorAll('.product-card').forEach(card => {
+    const pid = card.dataset.pid;
+    if (!pid || hidden.includes(pid) || card.style.display === 'none') return;
     const name   = card.querySelector('.card-name')?.textContent || 'Product';
     const cat    = card.querySelector('.card-cat')?.textContent  || '';
     const imgSrc = card.querySelector('.card-img-wrap img')?.src  || '';
+    const isSb   = !!card.dataset.supabase;
 
     const item = document.createElement('div');
     item.className = 'admin-product-item';
@@ -3469,7 +4230,7 @@ function loadAdminProductList() {
       <div class="admin-prod-thumb">${imgSrc ? `<img src="${imgSrc}" alt="">` : '🏺'}</div>
       <div class="admin-prod-info">
         <div class="admin-prod-name">${name}</div>
-        <div class="admin-prod-cat">${cat}</div>
+        <div class="admin-prod-cat">${cat} ${isSb ? '<span style="color:var(--gold);font-size:0.6rem;"> ☁ Supabase</span>' : '<span style="opacity:0.4;font-size:0.6rem;"> · Built-in</span>'}</div>
       </div>
       <button class="admin-prod-edit" onclick="editProduct('${pid}')">✏️ Edit</button>
       <button class="admin-prod-del" onclick="deleteCard(event,'${pid}')">Delete</button>`;
@@ -3570,6 +4331,8 @@ setTimeout(() => {
 }, 2000);
 
 window.addEventListener('DOMContentLoaded', async () => {
+  applyStoredRemovals();
+
   loadSupabaseProducts();
 
   const { data: { session } } = await sb.auth.getSession();
