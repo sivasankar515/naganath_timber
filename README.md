@@ -7,7 +7,7 @@
 
 ## 🖥️ Live Site
 
-[naganath-timber.vercel.app]()
+[https://sivasankar515.github.io/naganath_timber]()
 
 ---
 
@@ -92,7 +92,7 @@
 ## 👨‍💻 Built by
 
 **Siva** — MCA Student & Freelance Web Developer, Paramakudi
-[GitHub](https://github.com/your-username) · [LinkedIn](https://linkedin.com/in/your-profile)
+[GitHub](https://github.com/sivasankar515) · [LinkedIn](https://www.linkedin.com/in/siva-sankar-v-2a24ab292?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 
 ---
 
